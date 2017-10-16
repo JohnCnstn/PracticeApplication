@@ -1,5 +1,7 @@
 package classes.data.entity;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -15,6 +17,8 @@ public class Faculty {
     private long id;
 
     @Column(name = "name")
+    @Getter
+    @Setter
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})

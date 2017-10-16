@@ -14,21 +14,16 @@ import org.springframework.web.servlet.ModelAndView;
 public class LoginController {
 
     @Autowired
-    CompanyService companyService;
+    private CompanyService companyService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView home(Model model){
-        Student student = new Student();
-        student.setFirstName("Pasha");
-        String name = student.getFirstName();
+    public ModelAndView home(){
 
         Company company = new Company();
-        company.setName("NetCracker");
+        company.setName("Nope");
 
         companyService.addCompany(company);
 
-        model.addAttribute("studentName", name);
-
-        return new ModelAndView("home","student", new Student());
+        return new ModelAndView("home");
     }
 }

@@ -1,5 +1,7 @@
 package classes.data.entity;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -16,9 +18,15 @@ public class Practice {
     private long id;
 
     @Column(name = "start_date")
+    @Getter
+    @Setter
+    @Temporal(TemporalType.DATE)
     private Date start_date;
 
     @Column(name = "end_date")
+    @Getter
+    @Setter
+    @Temporal(TemporalType.DATE)
     private Date end_date;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
@@ -36,46 +44,6 @@ public class Practice {
         this.start_date = start_date;
         this.end_date = end_date;
         this.student = student;
-        this.headMaster = headMaster;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public Date getStart_date() {
-        return start_date;
-    }
-
-    public void setStart_date(Date start_date) {
-        this.start_date = start_date;
-    }
-
-    public Date getEnd_date() {
-        return end_date;
-    }
-
-    public void setEnd_date(Date end_date) {
-        this.end_date = end_date;
-    }
-
-    public Student getStudent() {
-        return student;
-    }
-
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-
-    public HeadMaster getHeadMaster() {
-        return headMaster;
-    }
-
-    public void setHeadMaster(HeadMaster headMaster) {
         this.headMaster = headMaster;
     }
 }

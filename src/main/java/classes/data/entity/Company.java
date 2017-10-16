@@ -1,5 +1,7 @@
 package classes.data.entity;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -15,21 +17,22 @@ public class Company {
     private long id;
 
     @Column(name = "name")
+    @Getter
+    @Setter
     private String name;
 
-    public long getId() {
-        return id;
-    }
+    @Column(name = "address")
+    @Getter
+    @Setter
+    private String address;
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    @Column(name = "phone")
+    @Getter
+    @Setter
+    private String phone;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    @Column(name = "email")
+    @Getter
+    @Setter
+    private String email;
 }
