@@ -4,6 +4,7 @@
     <title>Title</title>
 </head>
 <body>
-
+    <h1>Hi Admin!</h1>
+    <a href="logout ">logout</a>
 </body>
 </html>

@@ -10,14 +10,14 @@
     <packaging>war</packaging>
 
     <properties>
-        <org.springfraemwork-version>4.0.5.RELEASE</org.springfraemwork-version>
+        <org.springfraemwork-version>4.2.5.RELEASE</org.springfraemwork-version>
+        <spring-security-version>4.0.4.RELEASE</spring-security-version>
         <java.version>1.8</java.version>
-        <spring.mvc>4.0.3.RELEASE</spring.mvc>
-        <spring.data>1.3.5.RELEASE</spring.data>
-        <hb.manager>4.2.5.Final</hb.manager>
+        <spring.mvc>4.2.3.RELEASE</spring.mvc>
+        <spring.data>1.4.1.RELEASE</spring.data>
+        <hb.manager>4.3.11.Final</hb.manager>
         <commons-dbcp.version>1.4</commons-dbcp.version>
-        <mysql.version>5.1.29</mysql.version>
-        <spring.version>3.1.4.RELEASE</spring.version>
+        <mysql.version>5.1.31</mysql.version>
     </properties>
 
     <dependencies>
@@ -32,17 +32,17 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
-            <version>${spring.version}</version>
+            <version>${spring-security-version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
-            <version>${spring.version}</version>
+            <version>${spring-security-version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
-            <version>${spring.version}</version>
+            <version>${spring-security-version}</version>
         </dependency>
 
         <dependency>
@@ -82,7 +82,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <version>4.1.6.RELEASE</version>
+            <version>${org.springfraemwork-version}</version>
         </dependency>
 
         <dependency>
@@ -131,8 +131,8 @@
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
         </plugins>
