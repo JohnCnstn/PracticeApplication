@@ -14,7 +14,7 @@
 </c:if>
 
 <%--<form:form method="post" commandName="user" action="check-user" class="box login">--%>
-<form:form name="form-Login" action="login" method="post">
+<form:form name="form-Login" action="j_spring_security_check" method="post">
 
 <div id = "login" class = "container">
     <h1>Log in</h1>
