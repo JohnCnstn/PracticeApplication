@@ -9,7 +9,9 @@
     http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 
     <http use-expressions="true">
-        <intercept-url pattern="/login*" access="isAnonymous()"/>
+
+        <intercept-url pattern="/favicon*" access="permitAll" />
+        <intercept-url pattern="/login*" access="permitAll"/>
         <intercept-url pattern="/**" access="isAuthenticated()"/>
 
         <form-login
@@ -18,7 +20,9 @@
                 username-parameter="username-signin"
                 password-parameter="password-signin"
                 authentication-failure-url="/login?error=true"/>
+
         <logout logout-success-url="/login"/>
+
     </http>
 
     <authentication-manager id="authManager">

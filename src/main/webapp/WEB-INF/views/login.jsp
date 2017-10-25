@@ -9,8 +9,8 @@
 </head>
 <body>
 
-<c:if test="$(not empty error)">
-    $(error)
+<c:if test="${not empty error}">
+    ${error}
 </c:if>
 
 <%--<form:form method="post" commandName="user" action="check-user" class="box login">--%>
