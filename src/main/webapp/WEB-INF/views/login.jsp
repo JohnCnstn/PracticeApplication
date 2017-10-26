@@ -26,10 +26,15 @@
         <label for="pwd">Your password:</label>
         <input type="password" name="password-signin" class="form-control" id="pwd" required="required" placeholder="Password">
     </div>
+
     <div class="checkbox">
-        <label><input type="checkbox"> Remember me</label>
+        <label>
+            <input type="checkbox" name="remember_me"> Remember me
+        </label>
     </div>
+
     <button type="submit" class="btn btn-default">Submit</button>
+
 </div>
 
 </form:form>

@@ -13,7 +13,7 @@
 
     <mvc:default-servlet-handler />
 
-    <context:component-scan base-package="classes.controllers"/>
+    <context:component-scan base-package="classes.controller"/>
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="order" value="1"/>

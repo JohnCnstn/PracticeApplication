@@ -23,9 +23,15 @@
                 default-target-url="/user"
                 username-parameter="username-signin"
                 password-parameter="password-signin"
-                authentication-failure-url="/login?error=true"/>
+                authentication-failure-url="/login?error=true"
+        />
 
-        <logout logout-success-url="/login"/>
+        <logout
+            logout-url="/login?logout=true"
+        />
+
+
+        <remember-me key="secretKey"/>
 
     </http>
 
@@ -37,4 +43,5 @@
             </user-service>
         </authentication-provider>
     </authentication-manager>
+
 </beans:beans>
