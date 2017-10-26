@@ -10,9 +10,13 @@
 
     <http use-expressions="true">
 
+        <access-denied-handler error-page="/accessDenied"/>
+
         <intercept-url pattern="/favicon*" access="permitAll" />
         <intercept-url pattern="/login*" access="permitAll"/>
-        <intercept-url pattern="/**" access="isAuthenticated()"/>
+
+        <intercept-url pattern="/user" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
 
         <form-login
                 login-page="/login"
@@ -29,6 +33,7 @@
         <authentication-provider>
             <user-service>
                 <user name="user" password="user" authorities="ROLE_USER"/>
+                <user name="admin" password="admin" authorities="ROLE_ADMIN"/>
             </user-service>
         </authentication-provider>
     </authentication-manager>
