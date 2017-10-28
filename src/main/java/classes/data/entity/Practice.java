@@ -30,8 +30,8 @@ public class Practice {
     private Date end_date;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "student_id", nullable = false)
-    private Student student;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "headMaster_id", nullable = false)
@@ -40,10 +40,10 @@ public class Practice {
     public Practice() {
     }
 
-    public Practice(Date start_date, Date end_date, Student student, HeadMaster headMaster) {
+    public Practice(Date start_date, Date end_date, User user, HeadMaster headMaster) {
         this.start_date = start_date;
         this.end_date = end_date;
-        this.student = student;
+        this.user = user;
         this.headMaster = headMaster;
     }
 }

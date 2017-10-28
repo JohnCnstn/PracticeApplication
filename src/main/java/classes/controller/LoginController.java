@@ -1,6 +1,9 @@
 package classes.controller;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,15 +15,11 @@ import java.security.Principal;
 public class LoginController {
 
     @RequestMapping(value = "/accessDenied", method = RequestMethod.GET)
-    public ModelAndView accessDenied(Principal user){
+    public ModelAndView accessDenied(){
 
         ModelAndView model = new ModelAndView();
 
-        if (user != null) {
-            model.addObject("errorMsg", user.getName() + "you have no access to this page.");
-        } else {
-            model.addObject("errorMsg", "You have no access to this page.");
-        }
+        model.addObject("user", getPrincipal());
 
         model.setViewName("accessDenied");
 
@@ -31,6 +30,12 @@ public class LoginController {
     public ModelAndView userPage() {
         ModelAndView view = new ModelAndView("user");
         return view;
+    }
+
+    @RequestMapping(value = "/db", method = RequestMethod.GET)
+    public String dbaPage(ModelMap model) {
+        model.addAttribute("user", getPrincipal());
+        return "db";
     }
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
@@ -60,6 +65,18 @@ public class LoginController {
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public String logoutPage () {
         return "redirect:login?logout=true";
+    }
+
+    private String getPrincipal(){
+        String userName;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails)principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+        return userName;
     }
 
 }

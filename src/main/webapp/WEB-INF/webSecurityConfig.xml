@@ -15,7 +15,7 @@
         <intercept-url pattern="/favicon*" access="permitAll" />
         <intercept-url pattern="/login*" access="permitAll"/>
 
-        <intercept-url pattern="/user" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/user" access="hasRole('USER')"/>
         <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
 
         <form-login
@@ -36,12 +36,15 @@
     </http>
 
     <authentication-manager id="authManager">
-        <authentication-provider>
-            <user-service>
-                <user name="user" password="user" authorities="ROLE_USER"/>
-                <user name="admin" password="admin" authorities="ROLE_ADMIN"/>
-            </user-service>
-        </authentication-provider>
+        <authentication-provider user-service-ref="studentServiceImpl"/>
+        <!--<authentication-provider>-->
+            <!--<user-service>-->
+                <!--<user name="user" password="user" authorities="ROLE_USER"/>-->
+                <!--<user name="admin" password="admin" authorities="ROLE_ADMIN"/>-->
+            <!--</user-service>-->
+        <!--</authentication-provider>-->
     </authentication-manager>
+
+    <beans:bean id="studentServiceImpl" class="classes.data.service.impl.StudentServiceImpl" />
 
 </beans:beans>
