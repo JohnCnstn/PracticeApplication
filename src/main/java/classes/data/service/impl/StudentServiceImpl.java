@@ -16,7 +16,6 @@ public class StudentServiceImpl implements UserService {
     @Autowired
     StudentRepository studentRepository;
 
-
     @Override
     public User getByName(String name) {
         return null;

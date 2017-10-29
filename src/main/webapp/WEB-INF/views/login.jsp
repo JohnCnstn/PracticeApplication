@@ -9,7 +9,7 @@
     <title>Log in</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.css">
     <link rel="stylesheet" href="/resources/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/resources/css/login.css">
+    <link rel="stylesheet" href="/resources/css/registration.css">
 </head>
 <%--<body>--%>
 
@@ -48,19 +48,22 @@
     ${error}
 </c:if>
 
-<form:form name="form-Login" action="login" method="post">
-
 <div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">Practice application</a>
         </div>
 
-        <button type="button" class="btn navbar-btn navbar-right" id="btn-sign-up">Sign up</button>
+        <form:form action="sign-up" method="get">
+            <button type="submit" class="btn navbar-btn navbar-right" id="btn-sign-up">
+                Sign up
+            </button>
+        </form:form>
 
     </div>
 </div>
 
+<form:form name="form-Login" action="login" method="post">
 
 <div class="container">
     <div class="form">
@@ -77,9 +80,11 @@
                     <input type="password" name="password-signin" class="form-control" id="pwd" required="required" placeholder="Password">
                 </div>
 
-                <div class="keeplogin">
-                    <input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" />
-                    <label for="loginkeeping">Keep me logged in</label>
+                <div class="check-box">
+                    <div class="keeplogin">
+                        <input type="checkbox" name="remember-me" id="remember-me" value="remember-me" />
+                        <label for="remember-me">Keep me logged in</label>
+                    </div>
                 </div>
 
                 <div class="login button">
