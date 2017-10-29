@@ -1,5 +1,8 @@
 package classes.controller;
 
+import classes.data.service.impl.StudentServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -8,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 @Controller
 public class LoginController {
 
@@ -15,13 +21,14 @@ public class LoginController {
     public ModelAndView welcome() {
         ModelAndView model = new ModelAndView();
         model.addObject("user", getPrincipal());
-//        if (userProfile.getRoleByUserName(getPrincipal()).equals("ADMIN")) {
-//            model.setViewName("admin");
-//        } else if (userProfile.getRoleByUserName(getPrincipal()).equals("USER")) {
-//            model.setViewName("user");
-//        } else {
-//            model.setViewName("accessDenied");
-//        }
+
+        if (getPrincipalRole().equals("ROLE_ADMIN")) {
+            model.setViewName("admin");
+        } else if (getPrincipalRole().equals("ROLE_USER")) {
+            model.setViewName("user");
+        } else {
+            model.setViewName("accessDenied");
+        }
         return model;
     }
 
@@ -99,6 +106,24 @@ public class LoginController {
             userName = principal.toString();
         }
         return userName;
+    }
+
+    private String getPrincipalRole(){
+
+        Collection<? extends GrantedAuthority> role;
+
+        String authority = null;
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        role = ((UserDetails)principal).getAuthorities();
+
+        for (GrantedAuthority grantedAuthority : role)
+        {
+            authority = grantedAuthority.getAuthority();
+        }
+
+        return authority;
     }
 
 }
