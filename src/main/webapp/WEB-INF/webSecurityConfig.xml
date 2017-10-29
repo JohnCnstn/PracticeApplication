@@ -8,14 +8,14 @@
     http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 
-    <http use-expressions="true">
+    <http use-expressions="true" authentication-manager-ref="authManager">
 
         <access-denied-handler error-page="/accessDenied"/>
 
         <intercept-url pattern="/favicon*" access="permitAll" />
         <intercept-url pattern="/login*" access="permitAll"/>
 
-        <intercept-url pattern="/user" access="hasRole('USER')"/>
+        <intercept-url pattern="/user" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
 
         <form-login
@@ -30,13 +30,12 @@
             logout-url="/login?logout=true"
         />
 
-
-        <remember-me key="secretKey"/>
-
     </http>
 
     <authentication-manager id="authManager">
-        <authentication-provider user-service-ref="studentServiceImpl"/>
+        <authentication-provider user-service-ref="customUserDetailsService">
+            <!--<password-encoder ref="encoder" />-->
+        </authentication-provider>
         <!--<authentication-provider>-->
             <!--<user-service>-->
                 <!--<user name="user" password="user" authorities="ROLE_USER"/>-->
@@ -45,6 +44,6 @@
         <!--</authentication-provider>-->
     </authentication-manager>
 
-    <beans:bean id="studentServiceImpl" class="classes.data.service.impl.StudentServiceImpl" />
+    <beans:bean id="customUserDetailsService" class="classes.data.service.impl.CustomUserDetailsService" />
 
 </beans:beans>

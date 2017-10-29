@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.security.Principal;
 
 @Controller
 public class LoginController {
@@ -28,8 +27,8 @@ public class LoginController {
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public ModelAndView userPage() {
-        ModelAndView view = new ModelAndView("user");
-        return view;
+        ModelAndView model = new ModelAndView("user");
+        return model;
     }
 
     @RequestMapping(value = "/db", method = RequestMethod.GET)

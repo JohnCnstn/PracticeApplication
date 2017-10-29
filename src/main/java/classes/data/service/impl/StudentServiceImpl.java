@@ -1,62 +1,34 @@
 package classes.data.service.impl;
 
 import classes.data.entity.User;
-import classes.data.entity.UserProfile;
 import classes.data.repository.StudentRepository;
-import classes.data.service.StudentService;
+import classes.data.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service("studentServiceImpl")
-public class StudentServiceImpl implements StudentService {
+@Transactional
+public class StudentServiceImpl implements UserService {
 
     @Autowired
     StudentRepository studentRepository;
 
+
     @Override
     public User getByName(String name) {
-        return studentRepository.findByUserName(name);
+        return null;
+    }
+
+    @Override
+    public User getByUserName(String userName) {
+        return studentRepository.findByUserName(userName);
     }
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        User user = studentRepository.findByUserName(s);
-        System.out.println("User : " + user);
-        if(user == null) {
-            System.out.println("User not found");
-            throw new UsernameNotFoundException("Username not found");
-        }
-        return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(),
-                true, true, true, true, getGrantedAuthorities(user));
+        return (UserDetails) studentRepository.findByUserName(s);
     }
-
-    private List<GrantedAuthority> getGrantedAuthorities(User user){
-        List<GrantedAuthority> authorities = new ArrayList<>();
-
-        UserProfile userProfile = user.getUserProfile();
-        System.out.println("UserProfile : " + userProfile);
-        authorities.add(new SimpleGrantedAuthority("ROLE_" + userProfile.getType()));
-
-        System.out.print("authorities :" + authorities);
-        return authorities;
-    }
-
-//    private GrantedAuthority getGrantedAuthorities(User user){
-//        GrantedAuthority authorities;
-//
-//        UserProfile userProfile = user.getUserProfile();
-//        System.out.println("UserProfile : " + userProfile);
-//        authorities = new SimpleGrantedAuthority("ROLE_" + userProfile.getType());
-//
-//        System.out.print("authorities :" + authorities);
-//        return authorities;
-//    }
-
 }
