@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-    <title>Title</title>
+    <title>User page</title>
 </head>
 <body>
     <h1>Hi ${user}</h1>
