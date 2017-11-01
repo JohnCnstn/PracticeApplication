@@ -1,6 +1,7 @@
 package classes.data.dto;
 
-
+import classes.data.entity.Faculty;
+import classes.data.entity.UserProfile;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -38,4 +39,16 @@ public class UserDto {
     @Getter
     @Setter
     private String email;
+
+    @NotNull
+    @NotEmpty
+    @Getter
+    @Setter
+    private Faculty faculty;
+
+    @NotNull
+    @NotEmpty
+    @Getter
+    @Setter
+    private UserProfile userProfile;
 }

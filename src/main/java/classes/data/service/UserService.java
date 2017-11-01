@@ -1,9 +1,11 @@
 package classes.data.service;
 
+import classes.data.dto.UserDto;
 import classes.data.entity.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface UserService extends UserDetailsService {
+public interface UserService {
     User getByName(String name);
     User getByUserName(String userName);
+    User registerNewUserAccount(UserDto accountDto);
 }

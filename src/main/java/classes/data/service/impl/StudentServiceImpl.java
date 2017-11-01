@@ -1,11 +1,10 @@
 package classes.data.service.impl;
 
-import classes.data.entity.User;
+import classes.data.dto.UserDto;
+import classes.data.entity.*;
 import classes.data.repository.StudentRepository;
 import classes.data.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,11 +22,49 @@ public class StudentServiceImpl implements UserService {
 
     @Override
     public User getByUserName(String userName) {
-        return studentRepository.findByUserName(userName);
+        return null;
     }
 
+    @Transactional
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return (UserDetails) studentRepository.findByUserName(s);
+    public User registerNewUserAccount(UserDto accountDto) {
+
+        if (emailExist(accountDto.getEmail())) {
+            System.out.println("There is an account with that email address: "  + accountDto.getEmail());
+        }
+
+        University university = new University();
+        university.setName("BSUiR");
+
+        Faculty faculty = new Faculty();
+        faculty.setName("KSiS");
+
+        faculty.setUniversity(university);
+
+        UserProfile userProfile = new UserProfile();
+        userProfile.setType("ADMIN");
+
+        accountDto.setFaculty(faculty);
+        accountDto.setUserProfile(userProfile);
+
+        User user = new User();
+
+        user.setFirstName(accountDto.getFirstName());
+        user.setLastName(accountDto.getLastName());
+        user.setEmail(accountDto.getEmail());
+        user.setUserName(accountDto.getUserName());
+        user.setPassword(accountDto.getPassword());
+        user.setFaculty(accountDto.getFaculty());
+        user.setUserProfile(accountDto.getUserProfile());
+
+        return studentRepository.save(user);
+    }
+
+    private boolean emailExist(String email) {
+        User user = studentRepository.findByEmail(email);
+        if (user != null) {
+            return true;
+        }
+        return false;
     }
 }

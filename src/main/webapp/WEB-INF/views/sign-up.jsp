@@ -33,17 +33,25 @@
         </div>
     </div>
 
-    <form:form name="form-Login" action="login" method="post">
+    <form:form name="form-SignUp" action="sign-up" method="post">
 
     <div class="container">
         <div class="form">
             <div col-lg-4 col-lg-offset-8>
-                <div id = "login">
+                <div id = "sign_up">
 
                     <h1>Sign up</h1>
                     <div class="form-group">
-                        <label for="username-signup">Your username:</label>
-                        <input type="text" name="username-signup" class="form-control" id="username-signup" required="required" placeholder="Username">
+                        <label for="firstName">Your First Name:</label>
+                        <input type="text" name="firstName" class="form-control" id="firstName" required="required" placeholder="Pavel">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Your Last Name:</label>
+                        <input type="text" name="lastName" class="form-control" id="lastName" required="required" placeholder="Khankevich">
+                    </div>
+                    <div class="form-group">
+                        <label for="userName">Your username:</label>
+                        <input type="text" name="userName" class="form-control" id="userName" required="required" placeholder="Username">
                     </div>
                     <div class="form-group">
                         <label for="email">Your email:</label>
@@ -51,8 +59,16 @@
                     </div>
                     <div class="form-group">
                         <label for="pwd">Your password:</label>
-                        <input type="password" name="password-signin" class="form-control" id="pwd" required="required" placeholder="Password">
+                        <input type="password" name="password" class="form-control" id="pwd" required="required" placeholder="Password">
                     </div>
+
+                    <%--<div class="form-group">--%>
+                        <%--<select name="faculty" id="faculty" required="required">--%>
+                            <%--<option value="BSUiR">BSUiR</option>--%>
+                            <%--<option value="BNTU">BNTU</option>--%>
+                            <%--<option value="BRSU">BRSU</option>--%>
+                        <%--</select>--%>
+                    <%--</div>--%>
 
                     <div class="check-box">
                         <div class="keeplogin">
@@ -70,17 +86,17 @@
         </div>
     </div>
 
-    <div id="f">
-        <div class="container">
-            <div class="row centered">
-                <div col-lg-10 col-lg-offset-1>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-vk"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <%--<div id="f">--%>
+        <%--<div class="container">--%>
+            <%--<div class="row centered">--%>
+                <%--<div col-lg-10 col-lg-offset-1>--%>
+                    <%--<a href="#"><i class="fa fa-twitter"></i></a>--%>
+                    <%--<a href="#"><i class="fa fa-facebook"></i></a>--%>
+                    <%--<a href="#"><i class="fa fa-vk"></i></a>--%>
+                <%--</div>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+    <%--</div>--%>
 
 </form:form>
 </body>

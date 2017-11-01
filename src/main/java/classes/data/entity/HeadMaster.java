@@ -34,8 +34,9 @@ public class HeadMaster {
     @Setter
     private String lastName;
 
-    @Column(name = "number_of_students")
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "user_profile_id", nullable = false)
     @Getter
     @Setter
-    private int number_of_students;
+    private UserProfile userProfile;
 }

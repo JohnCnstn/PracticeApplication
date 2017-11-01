@@ -14,4 +14,5 @@ public enum UserProfileType {
     UserProfileType(String userProfileType) {
         this.userProfileType = userProfileType;
     }
+
 }
