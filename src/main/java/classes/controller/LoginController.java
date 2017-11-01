@@ -73,19 +73,6 @@ public class LoginController {
         return model;
     }
 
-    @RequestMapping(value = { "/sign-up" }, method = RequestMethod.GET)
-    public ModelAndView login(@RequestParam(value = "error", required = false) String error) {
-
-        ModelAndView model = new ModelAndView();
-
-        if (error != null) {
-            model.addObject("error", "Invalid username or password!");
-        }
-
-        model.setViewName("sign-up");
-        return model;
-    }
-
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public String logoutPage () {
         return "redirect:login?logout=true";
