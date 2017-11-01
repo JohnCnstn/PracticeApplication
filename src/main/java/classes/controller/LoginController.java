@@ -20,11 +20,11 @@ public class LoginController {
         model.addObject("user", getPrincipal());
 
         if (getPrincipalRole().equals("ROLE_ADMIN")) {
-            model.setViewName("admin");
+            model.setViewName("redirect: admin");
         } else if (getPrincipalRole().equals("ROLE_USER")) {
-            model.setViewName("user");
+            model.setViewName("redirect: user");
         } else {
-            model.setViewName("accessDenied");
+            model.setViewName("redirect: accessDenied");
         }
         return model;
     }
