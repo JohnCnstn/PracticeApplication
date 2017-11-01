@@ -14,10 +14,14 @@ public class HeadMaster {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name= "increment", strategy= "increment")
     @Column(name = "id", length = 6, nullable = false)
+    @Getter
+    @Setter
     private long id;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "company_id", nullable = false)
+    @Getter
+    @Setter
     private Company company;
 
     @Column(name = "first_name")

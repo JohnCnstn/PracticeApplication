@@ -22,4 +22,5 @@ public class UserProfile {
     @Getter
     @Setter
     private String type = UserProfileType.USER.getUserProfileType();
+
 }

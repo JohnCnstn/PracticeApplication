@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "user")
 public class User {
+
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name= "increment", strategy= "increment")
@@ -48,7 +49,9 @@ public class User {
     @Setter
     private UserProfile userProfile;
 
-//    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-//    @JoinColumn(name = "faculty_id", nullable = false)
-//    private Faculty faculty;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "faculty_id", nullable = false)
+    @Getter
+    @Setter
+    private Faculty faculty;
 }

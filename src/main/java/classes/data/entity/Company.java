@@ -14,6 +14,8 @@ public class Company {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name= "increment", strategy= "increment")
     @Column(name = "id", length = 6, nullable = false)
+    @Getter
+    @Setter
     private long id;
 
     @Column(name = "name")

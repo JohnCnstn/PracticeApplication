@@ -14,7 +14,9 @@ public class Practice {
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name= "increment", strategy= "increment")
-    @Column(name = "id", length = 6, nullable = false)
+    @Column(name = "id", nullable = false)
+    @Getter
+    @Setter
     private long id;
 
     @Column(name = "start_date")
@@ -35,15 +37,7 @@ public class Practice {
 
     @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "headMaster_id", nullable = false)
+    @Getter
+    @Setter
     private HeadMaster headMaster;
-
-    public Practice() {
-    }
-
-    public Practice(Date start_date, Date end_date, User user, HeadMaster headMaster) {
-        this.start_date = start_date;
-        this.end_date = end_date;
-        this.user = user;
-        this.headMaster = headMaster;
-    }
 }
