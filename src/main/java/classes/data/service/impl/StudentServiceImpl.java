@@ -17,12 +17,12 @@ public class StudentServiceImpl implements UserService {
 
     @Override
     public User getByName(String name) {
-        return null;
+        return studentRepository.findByName(name);
     }
 
     @Override
     public User getByUserName(String userName) {
-        return null;
+        return studentRepository.findByUserName(userName);
     }
 
     @Transactional
@@ -33,19 +33,19 @@ public class StudentServiceImpl implements UserService {
             System.out.println("There is an account with that email address: "  + accountDto.getEmail());
         }
 
-        University university = new University();
-        university.setName("BSUiR");
+//        University university = new University();
+//        university.setName("BSUiR");
+//
+//        Faculty faculty = new Faculty();
+//        faculty.setName("KSiS");
+//
+//        faculty.setUniversity(university);
+//
+//        UserProfile userProfile = new UserProfile();
+//        userProfile.setType("ADMIN");
 
-        Faculty faculty = new Faculty();
-        faculty.setName("KSiS");
-
-        faculty.setUniversity(university);
-
-        UserProfile userProfile = new UserProfile();
-        userProfile.setType("ADMIN");
-
-        accountDto.setFaculty(faculty);
-        accountDto.setUserProfile(userProfile);
+//        accountDto.setFaculty(faculty);
+//        accountDto.setUserProfile(userProfile);
 
         User user = new User();
 
@@ -54,8 +54,11 @@ public class StudentServiceImpl implements UserService {
         user.setEmail(accountDto.getEmail());
         user.setUserName(accountDto.getUserName());
         user.setPassword(accountDto.getPassword());
-        user.setFaculty(accountDto.getFaculty());
-        user.setUserProfile(accountDto.getUserProfile());
+
+        user.setFaculty();
+
+//        user.setFaculty(accountDto.getFaculty());
+//        user.setUserProfile(accountDto.getUserProfile());
 
         return studentRepository.save(user);
     }

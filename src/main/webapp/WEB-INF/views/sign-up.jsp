@@ -62,13 +62,13 @@
                         <input type="password" name="password" class="form-control" id="pwd" required="required" placeholder="Password">
                     </div>
 
-                    <%--<div class="form-group">--%>
-                        <%--<select name="faculty" id="faculty" required="required">--%>
-                            <%--<option value="BSUiR">BSUiR</option>--%>
-                            <%--<option value="BNTU">BNTU</option>--%>
-                            <%--<option value="BRSU">BRSU</option>--%>
-                        <%--</select>--%>
-                    <%--</div>--%>
+                    <div class="form-group">
+                        <select name="faculty" id="faculty" required="required">
+                            <option value="BSUiR">BSUiR</option>
+                            <option value="BNTU">BNTU</option>
+                            <option value="BRSU">BRSU</option>
+                        </select>
+                    </div>
 
                     <div class="check-box">
                         <div class="keeplogin">

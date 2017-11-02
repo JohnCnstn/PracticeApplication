@@ -41,18 +41,18 @@
                 remember-me-parameter="remember-me"
                 remember-me-cookie="remember-me"
                 token-validity-seconds="86400"
-                user-service-ref="customUserDetailsService"
+                user-service-ref="myUserDetailsService"
         />
 
     </http>
 
     <authentication-manager id="authManager">
-        <authentication-provider user-service-ref="customUserDetailsService">
+        <authentication-provider user-service-ref="myUserDetailsService">
             <password-encoder ref="bcrypt" />
         </authentication-provider>
     </authentication-manager>
 
-    <beans:bean id="customUserDetailsService" class="classes.data.service.impl.CustomUserDetailsService" />
+    <beans:bean id="myUserDetailsService" class="classes.data.service.impl.MyUserDetailsService" />
 
     <beans:bean id="bcrypt" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
         <beans:constructor-arg name="strength" value="10" />

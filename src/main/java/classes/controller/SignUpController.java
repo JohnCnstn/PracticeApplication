@@ -1,5 +1,6 @@
 package classes.controller;
 
+import classes.data.dto.UniversityDto;
 import classes.data.dto.UserDto;
 import classes.data.entity.User;
 import classes.data.service.UserService;
@@ -43,7 +44,7 @@ public class SignUpController {
             return new ModelAndView("sign-up", "user", accountDto);
         }
         else {
-            return new ModelAndView("successRegister", "user", accountDto);
+            return new ModelAndView("user", "user", accountDto);
         }
     }
 

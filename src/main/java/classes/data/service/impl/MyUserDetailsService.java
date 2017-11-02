@@ -15,8 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service("customUserDetailsService")
-public class CustomUserDetailsService implements UserDetailsService {
+@Service("myUserDetailsService")
+public class MyUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserService userService;

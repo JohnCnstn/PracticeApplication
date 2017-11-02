@@ -7,6 +7,10 @@ import org.springframework.data.repository.query.Param;
 
 public interface StudentRepository extends JpaRepository<User, Long> {
 
+    @Query("select u from User u where u.name = :name")
+    User findByName(String name);
+
+    @Query("select u from User u where u.userName = :userName")
     User findByUserName(String userName);
 
     @Query("select u from User u where u.email = :email")
