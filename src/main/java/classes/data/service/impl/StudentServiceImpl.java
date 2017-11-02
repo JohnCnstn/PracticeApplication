@@ -15,6 +15,12 @@ public class StudentServiceImpl implements UserService {
     @Autowired
     StudentRepository studentRepository;
 
+    @Autowired
+    FacultyServiceImpl facultyService;
+
+    @Autowired
+    UserProfileServiceImpl userProfileService;
+
     @Override
     public User getByName(String name) {
         return studentRepository.findByName(name);
@@ -47,6 +53,10 @@ public class StudentServiceImpl implements UserService {
 //        accountDto.setFaculty(faculty);
 //        accountDto.setUserProfile(userProfile);
 
+//         universityService = new UniversityServiceImpl();
+//        universityService.getByName("BSUiR");
+
+
         User user = new User();
 
         user.setFirstName(accountDto.getFirstName());
@@ -55,7 +65,8 @@ public class StudentServiceImpl implements UserService {
         user.setUserName(accountDto.getUserName());
         user.setPassword(accountDto.getPassword());
 
-        user.setFaculty();
+        user.setFaculty(facultyService.getByName("FKSiS"));
+        user.setUserProfile(userProfileService.getByType("USER"));
 
 //        user.setFaculty(accountDto.getFaculty());
 //        user.setUserProfile(accountDto.getUserProfile());
