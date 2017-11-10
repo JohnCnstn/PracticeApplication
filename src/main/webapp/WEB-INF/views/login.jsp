@@ -82,7 +82,7 @@
 
                 <div class="check-box">
                     <div class="keeplogin">
-                        <input type="checkbox" name="remember-me" id="remember-me" value="remember-me" />
+                        <input type="checkbox" name="remember-me" id="remember-me" />
                         <label for="remember-me">Keep me logged in</label>
                     </div>
                 </div>

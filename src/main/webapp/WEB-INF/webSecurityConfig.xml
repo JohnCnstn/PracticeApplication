@@ -33,14 +33,14 @@
                 authentication-failure-url="/login?error=true"
         />
 
-        <logout
-            logout-url="/login?logout=true"
+        <remember-me
+                key="uniqueAndSecret"
+                token-validity-seconds="86400"
         />
 
-        <remember-me
-                remember-me-parameter="remember-me"
-                remember-me-cookie="remember-me"
-                user-service-ref="myUserDetailsService"
+        <logout
+            logout-url="/login?logout=true"
+            delete-cookies="JSESSIONID"
         />
 
     </http>

@@ -1,12 +1,9 @@
 package classes.controller;
 
-import classes.data.dto.FacultyDto;
-import classes.data.dto.UniversityDto;
 import classes.data.dto.UserDto;
 import classes.data.entity.User;
 import classes.data.service.UserService;
 import classes.data.service.impl.FacultyServiceImpl;
-import classes.data.service.impl.UniversityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
