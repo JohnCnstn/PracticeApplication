@@ -1,7 +1,5 @@
 package classes.data.service.impl;
 
-import classes.data.dto.FacultyDto;
-import classes.data.dto.UniversityDto;
 import classes.data.dto.UserDto;
 import classes.data.entity.*;
 import classes.data.repository.StudentRepository;
@@ -10,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service("studentServiceImpl")
 @Transactional
@@ -35,6 +35,11 @@ public class StudentServiceImpl implements UserService {
     @Override
     public User getByUserName(String userName) {
         return studentRepository.findByUserName(userName);
+    }
+
+    @Override
+    public List<User> getAll() {
+        return studentRepository.findAll();
     }
 
     @Transactional

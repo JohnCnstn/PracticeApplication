@@ -54,4 +54,18 @@ public class User {
     @Getter
     @Setter
     private Faculty faculty;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", userProfile=" + userProfile +
+                ", faculty=" + faculty +
+                '}';
+    }
 }

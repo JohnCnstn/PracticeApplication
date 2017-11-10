@@ -24,7 +24,7 @@ public class SignUpController {
     @Autowired
     FacultyServiceImpl facultyService;
 
-    @RequestMapping(value = { "/sign-up" }, method = RequestMethod.GET)
+    @RequestMapping(value = "/sign-up", method = RequestMethod.GET)
     public String showSignUpForm(Model model) {
         UserDto userDto = new UserDto();
         model.addAttribute("user", userDto);
@@ -34,7 +34,7 @@ public class SignUpController {
 
     @RequestMapping(value = "/sign-up", method = RequestMethod.POST)
     public ModelAndView registerUserAccount(
-            @ModelAttribute("user") @Valid UserDto accountDto,BindingResult result) {
+            @ModelAttribute("user") @Valid UserDto accountDto, BindingResult result) {
 
         User registered = new User();
         if (!result.hasErrors()) {
