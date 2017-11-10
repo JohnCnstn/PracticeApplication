@@ -1,5 +1,7 @@
 package classes.data.service.impl;
 
+import classes.data.dto.FacultyDto;
+import classes.data.dto.UniversityDto;
 import classes.data.dto.UserDto;
 import classes.data.entity.*;
 import classes.data.repository.StudentRepository;
@@ -14,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class StudentServiceImpl implements UserService {
 
     @Autowired
-    StudentRepository studentRepository;
+    private StudentRepository studentRepository;
 
     @Autowired
     private FacultyServiceImpl facultyService;
@@ -52,7 +54,8 @@ public class StudentServiceImpl implements UserService {
 
         user.setPassword(bCryptPasswordEncoder.encode(accountDto.getPassword()));
 
-        user.setFaculty(facultyService.getByName("FKSiS"));
+        user.setFaculty(facultyService.getByName(accountDto.getFaculty()));
+
         user.setUserProfile(userProfileService.getByType("USER"));
 
         return studentRepository.save(user);

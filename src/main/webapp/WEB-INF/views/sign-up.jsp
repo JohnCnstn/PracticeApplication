@@ -62,13 +62,16 @@
                         <input type="password" name="password" class="form-control" id="pwd" required="required" placeholder="Password">
                     </div>
 
-                    <%--<div class="form-group">--%>
-                        <%--<select name="faculty" id="faculty" required="required">--%>
-                            <%--<option value="BSUiR">BSUiR</option>--%>
-                            <%--<option value="BNTU">BNTU</option>--%>
-                            <%--<option value="BRSU">BRSU</option>--%>
-                        <%--</select>--%>
-                    <%--</div>--%>
+                    <div class="form-group">
+                        <label>Select a university:</label>
+
+                        <select name="faculty">
+                            <c:forEach items="${list}" var="i">
+                                <option value="${i.name}">${i.name}</option>
+                            </c:forEach>
+                        </select>
+
+                    </div>
 
                     <div class="check-box">
                         <div class="keeplogin">

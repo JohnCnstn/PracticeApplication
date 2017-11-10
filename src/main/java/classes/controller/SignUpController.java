@@ -1,10 +1,12 @@
 package classes.controller;
 
+import classes.data.dto.FacultyDto;
 import classes.data.dto.UniversityDto;
 import classes.data.dto.UserDto;
 import classes.data.entity.User;
 import classes.data.service.UserService;
-import classes.data.service.impl.StudentServiceImpl;
+import classes.data.service.impl.FacultyServiceImpl;
+import classes.data.service.impl.UniversityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,16 +24,20 @@ public class SignUpController {
     @Autowired
     UserService service;
 
+    @Autowired
+    FacultyServiceImpl facultyService;
+
     @RequestMapping(value = { "/sign-up" }, method = RequestMethod.GET)
     public String showSignUpForm(Model model) {
         UserDto userDto = new UserDto();
         model.addAttribute("user", userDto);
+        model.addAttribute("list", facultyService.getAll());
         return "sign-up";
     }
 
     @RequestMapping(value = "/sign-up", method = RequestMethod.POST)
     public ModelAndView registerUserAccount(
-            @ModelAttribute("user") @Valid UserDto accountDto, BindingResult result) {
+            @ModelAttribute("user") @Valid UserDto accountDto,BindingResult result) {
 
         User registered = new User();
         if (!result.hasErrors()) {

@@ -44,7 +44,7 @@ public class UserDto {
     @NotEmpty
     @Getter
     @Setter
-    private Faculty faculty;
+    private String faculty;
 
     @NotNull
     @NotEmpty
