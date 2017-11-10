@@ -63,7 +63,7 @@
     </div>
 </div>
 
-<form:form name="form-Login" action="login" method="post">
+<form:form name="form-login" action="login" method="post">
 
 <div class="container">
     <div class="form">
@@ -72,12 +72,12 @@
 
                 <h1>Sign in</h1>
                 <div class="form-group">
-                    <label for="usernamesignin">Your email or username:</label>
-                    <input type="text" name="username-signin" class="form-control" id="usernamesignin" required="required" placeholder="Username">
+                    <label for="userName">Your email or username:</label>
+                    <input type="text" name="username-signin" class="form-control" id="userName" required="required" placeholder="Username">
                 </div>
                 <div class="form-group">
-                    <label for="pwd">Your password:</label>
-                    <input type="password" name="password-signin" class="form-control" id="pwd" required="required" placeholder="Password">
+                    <label for="password">Your password:</label>
+                    <input type="password" name="password-signin" class="form-control" id="password" required="required" placeholder="Password">
                 </div>
 
                 <div class="check-box">

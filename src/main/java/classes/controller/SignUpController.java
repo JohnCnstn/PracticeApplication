@@ -51,6 +51,7 @@ public class SignUpController {
     private User createUserAccount(UserDto accountDto) {
 
         User registered;
+
         registered = service.registerNewUserAccount(accountDto);
 
         return registered;

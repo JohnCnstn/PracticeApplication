@@ -11,7 +11,7 @@ public interface StudentRepository extends JpaRepository<User, Long> {
     User findByName(String firstName);
 
     @Query("select u from User u where u.userName = :userName")
-    User findByUserName(String userName);
+    User findByUserName(@Param("userName")String userName);
 
     @Query("select u from User u where u.email = :email")
     User findByEmail(@Param("email") String email);

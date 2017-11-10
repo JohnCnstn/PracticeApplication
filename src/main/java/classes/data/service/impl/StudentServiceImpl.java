@@ -5,6 +5,7 @@ import classes.data.entity.*;
 import classes.data.repository.StudentRepository;
 import classes.data.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,10 +17,13 @@ public class StudentServiceImpl implements UserService {
     StudentRepository studentRepository;
 
     @Autowired
-    FacultyServiceImpl facultyService;
+    private FacultyServiceImpl facultyService;
 
     @Autowired
-    UserProfileServiceImpl userProfileService;
+    private UserProfileServiceImpl userProfileService;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public User getByName(String name) {
@@ -39,37 +43,17 @@ public class StudentServiceImpl implements UserService {
             System.out.println("There is an account with that email address: "  + accountDto.getEmail());
         }
 
-//        University university = new University();
-//        university.setName("BSUiR");
-//
-//        Faculty faculty = new Faculty();
-//        faculty.setName("KSiS");
-//
-//        faculty.setUniversity(university);
-//
-//        UserProfile userProfile = new UserProfile();
-//        userProfile.setType("ADMIN");
-
-//        accountDto.setFaculty(faculty);
-//        accountDto.setUserProfile(userProfile);
-
-//         universityService = new UniversityServiceImpl();
-//        universityService.getByName("BSUiR");
-
-
         User user = new User();
 
         user.setFirstName(accountDto.getFirstName());
         user.setLastName(accountDto.getLastName());
         user.setEmail(accountDto.getEmail());
         user.setUserName(accountDto.getUserName());
-        user.setPassword(accountDto.getPassword());
+
+        user.setPassword(bCryptPasswordEncoder.encode(accountDto.getPassword()));
 
         user.setFaculty(facultyService.getByName("FKSiS"));
         user.setUserProfile(userProfileService.getByType("USER"));
-
-//        user.setFaculty(accountDto.getFaculty());
-//        user.setUserProfile(accountDto.getUserProfile());
 
         return studentRepository.save(user);
     }
