@@ -10,14 +10,20 @@
 
 
     <div class="form-group">
-        <label>Students:</label>
+        <%--<label>Students:</label>--%>
 
-        <select name="student">
+        <%--<select name="student">--%>
 
-            <c:forEach items="${list}" var="i">
-                <option value="${i.firstName}">${i.firstName}</option>
-            </c:forEach>
-        </select>
+            <%--<c:forEach items="${list}" var="i">--%>
+                <%--<option value="${i.firstName}">${i.firstName}</option>--%>
+            <%--</c:forEach>--%>
+        <%--</select>--%>
+
+            <table align="center">
+                <c:forEach items="${list}" var="i">
+                    <tr><td><label>${i.firstName} ${i.lastName}</label></td></tr>
+                </c:forEach>
+            </table>
 
     </div>
 

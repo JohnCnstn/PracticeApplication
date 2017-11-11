@@ -1,7 +1,6 @@
 package classes.data.dto;
 
 import classes.data.entity.UserProfile;
-import classes.data.validation.ValidPassword;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Email;
@@ -9,7 +8,6 @@ import org.hibernate.validator.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-@ValidPassword
 public class UserDto {
 
     @NotNull
