@@ -35,7 +35,8 @@ public class SignUpController {
 
     @RequestMapping(value = "/sign-up", method = RequestMethod.POST)
     public ModelAndView registerUserAccount(
-            @ModelAttribute("user") @Valid UserDto accountDto, BindingResult result) {
+            @ModelAttribute("user") @Valid UserDto accountDto,
+            BindingResult result) {
 
         ModelAndView model = new ModelAndView();
 
@@ -45,15 +46,14 @@ public class SignUpController {
             registered = createUserAccount(accountDto);
         }
         if (registered == null) {
-            result.rejectValue("email", "message.regError");
             model.addObject("error", "Email already exists!");
         }
         if (result.hasErrors()) {
+            model.addObject("error", "Your email is incorrect!");
             model.setViewName("sign-up");
             model.addObject("list", facultyService.getAll());
             model.addObject("user", accountDto);
             return model;
-//            return new ModelAndView("sign-up", "user", accountDto);
         } else {
             return new ModelAndView("user", "user", accountDto);
         }
