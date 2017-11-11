@@ -5,7 +5,7 @@
     <title>User page</title>
 </head>
 <body>
-    <h1>Hi ${user}</h1>
+    <h1>Hi ${user.firstName}</h1>
     <a href="<c:url value="/logout" />">Logout</a>
 </body>
 </html>

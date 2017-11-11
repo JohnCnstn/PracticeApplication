@@ -68,9 +68,6 @@ public class StudentServiceImpl implements UserService {
 
     private boolean emailExist(String email) {
         User user = studentRepository.findByEmail(email);
-        if (user != null) {
-            return true;
-        }
-        return false;
+        return user != null;
     }
 }
