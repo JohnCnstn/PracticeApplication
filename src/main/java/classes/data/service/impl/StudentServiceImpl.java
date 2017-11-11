@@ -4,6 +4,7 @@ import classes.data.dto.UserDto;
 import classes.data.entity.*;
 import classes.data.repository.StudentRepository;
 import classes.data.service.UserService;
+import classes.data.validation.exception.EmailExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -44,10 +45,10 @@ public class StudentServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public User registerNewUserAccount(UserDto accountDto) {
+    public User registerNewUserAccount(UserDto accountDto) throws EmailExistsException {
 
         if (emailExist(accountDto.getEmail())) {
-            System.out.println("There is an account with that email address: "  + accountDto.getEmail());
+            throw new EmailExistsException("There is an account with that email address: "  + accountDto.getEmail());
         }
 
         User user = new User();
