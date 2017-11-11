@@ -50,6 +50,7 @@ public class SignUpController {
         }
         if (result.hasErrors()) {
             model.setViewName("sign-up");
+            model.addObject("list", facultyService.getAll());
             model.addObject("user", accountDto);
             return model;
 //            return new ModelAndView("sign-up", "user", accountDto);
