@@ -1,6 +1,7 @@
 package classes.data.dto;
 
 import classes.data.entity.UserProfile;
+import classes.data.validation.ValidEmail;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,6 +34,7 @@ public class UserDto {
     @Setter
     private String password;
 
+    @ValidEmail
     @NotNull
     @Size(min = 5, max = 20, message = "Your email should be from 5 to 20 symbols!")
     @Getter
