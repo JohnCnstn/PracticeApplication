@@ -42,11 +42,12 @@
                 <tr>
                     <th><span>First Name</span></th>
                     <th><span>Second Name</span></th>
+                    <th><span>Faculty</span></th>
                 </tr>
             </thead>
             <tbody>
 
-                <c:forEach items="${list}" var="i">
+                <c:forEach items="${listOfStudents}" var="i">
                     <tr>
                         <td>${i.firstName}</td>
                         <td>${i.lastName}</td>
