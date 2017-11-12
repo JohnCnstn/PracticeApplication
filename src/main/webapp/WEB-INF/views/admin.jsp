@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="/resources/css/bootstrap.css">
     <link rel="stylesheet" href="/resources/css/font-awesome.min.css">
     <link rel="stylesheet" href="/resources/css/main.css">
+    <link rel="stylesheet" href="/resources/css/admin.css">
+
+    <script type="text/javascript" src="/resources/js/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="/resources/js/jquery.tablesorter.js"></script>
+    <script type="text/javascript" src="/resources/js/jquery.tablesorter.min.js"></script>
+
 </head>
 <body>
 
@@ -29,13 +35,26 @@
     </div>
 
 
-    <div class="form-group">
+    <div class="form-group" id="wrapper">
 
-            <table align="center">
+        <table class="tablesorter" id="keywords" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr>
+                    <th><span>First Name</span></th>
+                    <th><span>Second Name</span></th>
+                </tr>
+            </thead>
+            <tbody>
+
                 <c:forEach items="${list}" var="i">
-                    <tr><td><label>${i.firstName} ${i.lastName}</label></td></tr>
+                    <tr>
+                        <td>${i.firstName}</td>
+                        <td>${i.lastName}</td>
+                    </tr>
                 </c:forEach>
-            </table>
+
+            </tbody>
+        </table>
 
     </div>
 
