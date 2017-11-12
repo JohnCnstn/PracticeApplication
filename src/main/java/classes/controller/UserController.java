@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class AdminController {
+public class UserController {
 
     @Autowired
     private UserService studentService;
 
-    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String adminPage(Model model) {
         model.addAttribute("list", studentService.getAll());
-        return "admin";
+        return "user";
     }
 }

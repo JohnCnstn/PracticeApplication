@@ -44,13 +44,6 @@ public class LoginController {
         return model;
     }
 
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public ModelAndView userPage() {
-        ModelAndView model = new ModelAndView("user");
-        model.addObject("user", getPrincipal());
-        return model;
-    }
-
     @RequestMapping(value = { "/", "/login" }, method = RequestMethod.GET)
     public ModelAndView login(@RequestParam(value = "error", required = false) String error,
                               @RequestParam(value = "logout", required = false) String logout) {
