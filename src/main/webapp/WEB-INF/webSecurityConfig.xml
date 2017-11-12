@@ -27,7 +27,7 @@
 
         <form-login
                 login-page="/login"
-                default-target-url="/welcome"
+                authentication-success-handler-ref="customAuthenticationSuccessHandler"
                 username-parameter="username-signin"
                 password-parameter="password-signin"
                 authentication-failure-url="/login?error=true"
@@ -50,6 +50,9 @@
             <password-encoder ref="bcrypt" />
         </authentication-provider>
     </authentication-manager>
+
+    <beans:bean id="customAuthenticationSuccessHandler"
+                class="classes.handler.CustomAuthenticationSuccessHandler" />
 
     <beans:bean id="myUserDetailsService" class="classes.data.service.impl.MyUserDetailsService" />
 

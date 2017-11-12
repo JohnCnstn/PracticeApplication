@@ -7,27 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Collection;
-
 @Controller
 @SessionAttributes("user")
 public class LoginController {
-
-    @RequestMapping(value = "/welcome", method = RequestMethod.GET)
-    public ModelAndView welcome() {
-
-        ModelAndView model = new ModelAndView();
-        model.addObject("user", getPrincipal());
-
-        if (getPrincipalRole().equals("ROLE_ADMIN")) {
-            model.setViewName("redirect: admin");
-        } else if (getPrincipalRole().equals("ROLE_USER")) {
-            model.setViewName("redirect: user");
-        } else {
-            model.setViewName("redirect: accessDenied");
-        }
-        return model;
-    }
 
     @RequestMapping(value = "/accessDenied", method = RequestMethod.GET)
     public ModelAndView accessDenied(){
@@ -77,23 +59,4 @@ public class LoginController {
         }
         return userName;
     }
-
-    private String getPrincipalRole(){
-
-        Collection<? extends GrantedAuthority> role;
-
-        String authority = null;
-
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        role = ((UserDetails)principal).getAuthorities();
-
-        for (GrantedAuthority grantedAuthority : role)
-        {
-            authority = grantedAuthority.getAuthority();
-        }
-
-        return authority;
-    }
-
 }
