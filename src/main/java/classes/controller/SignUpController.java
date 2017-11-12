@@ -26,19 +26,21 @@ public class SignUpController {
     private FacultyServiceImpl facultyService;
 
     @RequestMapping(value = "/sign-up", method = RequestMethod.GET)
-    public String showSignUpForm(Model model) {
-        UserDto userDto = new UserDto();
-        model.addAttribute("user", userDto);
-        model.addAttribute("list", facultyService.getAll());
-        return "sign-up";
+    public ModelAndView showSignUpForm() {
+
+        ModelAndView model = new ModelAndView();
+
+        model.setViewName("sign-up");
+        model.addObject("user", new UserDto());
+        model.addObject("list", facultyService.getAll());
+
+        return model;
     }
 
     @RequestMapping(value = "/sign-up", method = RequestMethod.POST)
-    public ModelAndView registerUserAccount(
-            @ModelAttribute("user") UserDto accountDto,
-            BindingResult result) {
-
-        ModelAndView model = new ModelAndView();
+    public String registerUserAccount(
+            @Valid @ModelAttribute("user") UserDto accountDto,
+            BindingResult result, Model model) {
 
         User registered = new User();
 
@@ -46,16 +48,14 @@ public class SignUpController {
             registered = createUserAccount(accountDto);
         }
         if (registered == null) {
-            model.addObject("error", "Email already exists!");
+            model.addAttribute("error", "Email already exists!");
         }
         if (result.hasErrors()) {
-            model.addObject("error", "Your email is incorrect!");
-            model.setViewName("sign-up");
-            model.addObject("list", facultyService.getAll());
-            model.addObject("user", accountDto);
-            return model;
+            model.addAttribute("list", facultyService.getAll());
+            return "sign-up";
         } else {
-            return new ModelAndView("user", "user", accountDto);
+            model.addAttribute("user", accountDto);
+            return "user";
         }
     }
 
