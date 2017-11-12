@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.Email;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 public class UserDto {
 
@@ -38,7 +39,8 @@ public class UserDto {
     @Setter
     private String matchingPassword;
 
-    @Email
+//    @Email
+//    @Pattern(regexp=".+@.+\\..+", message="Wrong email!")
     @NotNull
     @NotEmpty
     @Getter

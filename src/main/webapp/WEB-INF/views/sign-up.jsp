@@ -9,7 +9,7 @@
     <title>Log in</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.css">
     <link rel="stylesheet" href="/resources/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/resources/css/registration.css">
+    <link rel="stylesheet" href="/resources/css/main.css">
 </head>
 
 <body>
@@ -25,7 +25,7 @@
             </div>
 
             <form:form action="login" method="get">
-                <button type="submit" class="btn navbar-btn navbar-right" id="btn-sign-up">
+                <button type="submit" class="btn navbar-btn navbar-right" id="header-btn">
                     Log in
                 </button>
             </form:form>

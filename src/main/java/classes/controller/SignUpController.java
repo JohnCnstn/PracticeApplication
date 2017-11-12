@@ -35,7 +35,7 @@ public class SignUpController {
 
     @RequestMapping(value = "/sign-up", method = RequestMethod.POST)
     public ModelAndView registerUserAccount(
-            @ModelAttribute("user") @Valid UserDto accountDto,
+            @ModelAttribute("user") UserDto accountDto,
             BindingResult result) {
 
         ModelAndView model = new ModelAndView();

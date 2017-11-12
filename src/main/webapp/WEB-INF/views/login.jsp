@@ -9,39 +9,8 @@
     <title>Log in</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.css">
     <link rel="stylesheet" href="/resources/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/resources/css/registration.css">
+    <link rel="stylesheet" href="/resources/css/main.css">
 </head>
-<%--<body>--%>
-
-<%--<c:if test="${not empty error}">--%>
-    <%--${error}--%>
-<%--</c:if>--%>
-
-<%--&lt;%&ndash;<form:form method="post" commandName="user" action="check-user" class="box login">&ndash;%&gt;--%>
-<%--<form:form name="form-Login" action="login" method="post">--%>
-
-<%--<div id = "login" class = "container">--%>
-    <%--<h1>Log in</h1>--%>
-    <%--<div class="form-group">--%>
-        <%--<label for="usernamesignin">Your email or username:</label>--%>
-        <%--<input type="text" name="username-signin" class="form-control" id="usernamesignin" required="required" placeholder="Username">--%>
-    <%--</div>--%>
-    <%--<div class="form-group">--%>
-        <%--<label for="pwd">Your password:</label>--%>
-        <%--<input type="password" name="password-signin" class="form-control" id="pwd" required="required" placeholder="Password">--%>
-    <%--</div>--%>
-
-    <%--<div class="checkbox">--%>
-        <%--<label>--%>
-            <%--<input type="checkbox" name="remember_me"> Remember me--%>
-        <%--</label>--%>
-    <%--</div>--%>
-
-    <%--<button type="submit" class="btn btn-default">Submit</button>--%>
-
-<%--</div>--%>
-
-<%--</form:form>--%>
 <body>
 
 <c:if test="${not empty error}">
@@ -55,7 +24,7 @@
         </div>
 
         <form:form action="sign-up" method="get">
-            <button type="submit" class="btn navbar-btn navbar-right" id="btn-sign-up">
+            <button type="submit" class="btn navbar-btn navbar-right" id="header-btn">
                 Sign up
             </button>
         </form:form>
