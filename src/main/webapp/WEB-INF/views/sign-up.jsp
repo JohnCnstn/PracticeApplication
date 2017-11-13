@@ -65,6 +65,11 @@
                         <form:input path="password" type="password" name="password" class="form-control" id="pwd" required="required" placeholder="Password"/>
                         <form:errors path="password" cssClass="has-error"/>
                     </div>
+                    <div class="form-group">
+                        <form:label path="passwordMatches" for="pwdMatches">Your password:</form:label>
+                        <form:input path="passwordMatches" type="passwordMatches" name="passwordMatches" class="form-control" id="pwdMatches" required="required" placeholder="Password"/>
+                        <form:errors path="passwordMatches" cssClass="has-error"/>
+                    </div>
 
                     <div class="form-group">
                         <label>Select a university:</label>

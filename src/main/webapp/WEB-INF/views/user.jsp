@@ -48,8 +48,7 @@
 
         <c:forEach items="${list}" var="i">
             <tr>
-                <td>${i.firstName}</td>
-                <td>${i.lastName}</td>
+                <td>${i.name}</td>
             </tr>
         </c:forEach>
 
