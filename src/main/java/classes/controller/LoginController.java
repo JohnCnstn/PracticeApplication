@@ -1,5 +1,7 @@
 package classes.controller;
 
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -27,12 +29,16 @@ public class LoginController {
 
         ModelAndView model = new ModelAndView();
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
         if (error != null) {
             model.addObject("error", "Invalid username or password!");
         }
 
         if (logout != null) {
             model.addObject("logout", "Logged out successfully.");
+        } else if (!(auth instanceof AnonymousAuthenticationToken)){
+            return new ModelAndView("redirect:admin");
         }
 
         model.setViewName("login");
