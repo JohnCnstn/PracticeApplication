@@ -14,9 +14,14 @@
 
 <body>
 
-<c:if test="${not empty error}">
-    ${error}
-</c:if>
+<%--<c:if test="${not empty error}">--%>
+    <%--${error}--%>
+<%--</c:if>--%>
+<spring:hasBindErrors name="nameOfYourModelAttribute">
+    <c:if test="${errors.globalErrorCount > 0}">
+        <div class="alert alert-danger"><form:errors/></div>
+    </c:if>
+</spring:hasBindErrors>
 
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -58,6 +63,9 @@
                     <div class="form-group">
                         <form:label path="email" for="email">Your email:</form:label>
                         <form:input path="email" type="text" name="email" class="form-control" id="email" required="required" placeholder="email"/>
+                        <%--<c:if test="${not empty emailExistsError}">--%>
+                            <%--${emailExistsError}--%>
+                        <%--</c:if>--%>
                         <form:errors path="email" cssClass="has-error"/>
                     </div>
                     <div class="form-group">
@@ -66,9 +74,11 @@
                         <form:errors path="password" cssClass="has-error"/>
                     </div>
                     <div class="form-group">
-                        <form:label path="matchingPassword" for="pwdMatches">Your password:</form:label>
+                        <form:label path="matchingPassword" for="pwdMatches">Confirm your password:</form:label>
                         <form:input path="matchingPassword" type="password" name="matchingPassword" class="form-control" id="pwdMatches" required="required" placeholder="Password"/>
-                        <form:errors path="matchingPassword" cssClass="has-error"/>
+                        <%--<c:if test="${not empty error}">--%>
+                            <%--${error}--%>
+                        <%--</c:if>--%>
                     </div>
 
                     <div class="form-group">
@@ -96,18 +106,6 @@
                 </div>
         </div>
     </div>
-
-    <%--<div id="f">--%>
-        <%--<div class="container">--%>
-            <%--<div class="row centered">--%>
-                <%--<div col-lg-10 col-lg-offset-1>--%>
-                    <%--<a href="#"><i class="fa fa-twitter"></i></a>--%>
-                    <%--<a href="#"><i class="fa fa-facebook"></i></a>--%>
-                    <%--<a href="#"><i class="fa fa-vk"></i></a>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-        <%--</div>--%>
-    <%--</div>--%>
 
 </form:form>
 </body>

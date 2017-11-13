@@ -25,7 +25,7 @@ public class UserDto {
     private String lastName;
 
     @NotNull
-    @Size(min = 5, max = 10, message = "Your username should be from 3 to 20 symbols!")
+    @Size(min = 5, max = 10, message = "Your username should be from 5 to 20 symbols!")
     @Getter
     @Setter
     private String userName;

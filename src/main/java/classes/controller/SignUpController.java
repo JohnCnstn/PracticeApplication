@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 
 @Controller
-@SessionAttributes({"user", "list"})
+@SessionAttributes("list")
 public class SignUpController {
 
     @Autowired
@@ -40,27 +40,31 @@ public class SignUpController {
     }
 
     @RequestMapping(value = "/sign-up", method = RequestMethod.POST)
-    public String registerUserAccount(
+    public ModelAndView registerUserAccount(
             @Valid @ModelAttribute("user") UserDto accountDto,
-            BindingResult result, Model model) {
+            BindingResult result) {
+
+        ModelAndView model = new ModelAndView();
 
         User registered = new User();
 
         if (!result.hasErrors()) {
-            registered = createUserAccount(accountDto);
+            registered = createUserAccount(accountDto, result);
         }
         if (registered == null) {
-            model.addAttribute("error", "Email already exists!");
+            result.rejectValue("email", "message", "Email already exists");
         }
         if (result.hasErrors()) {
-            model.addAttribute("list", facultyService.getAll());
-            return "sign-up";
+            model.addObject("list", facultyService.getAll());
+            model.setViewName("sign-up");
         } else {
-            return "user";
+            model.setViewName("user");
         }
+        model.addObject("user", accountDto);
+        return model;
     }
 
-    private User createUserAccount(UserDto accountDto) {
+    private User createUserAccount(UserDto accountDto, BindingResult result) {
 
         User registered;
 
