@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
+    <title>Practice application</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.css">
     <link rel="stylesheet" href="/resources/css/font-awesome.min.css">
     <link rel="stylesheet" href="/resources/css/main.css">
@@ -46,11 +46,12 @@
         </thead>
         <tbody>
 
-        <c:forEach items="${list}" var="i">
-            <tr>
-                <td>${i.name}</td>
-            </tr>
-        </c:forEach>
+            <c:forEach items="${listOfStudents}" var="i">
+                <tr>
+                    <td>${i.firstName}</td>
+                    <td>${i.lastName}</td>
+                </tr>
+            </c:forEach>
 
         </tbody>
     </table>

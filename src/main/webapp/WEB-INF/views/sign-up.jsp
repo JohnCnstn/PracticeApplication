@@ -14,9 +14,6 @@
 
 <body>
 
-<%--<c:if test="${not empty error}">--%>
-    <%--${error}--%>
-<%--</c:if>--%>
 <spring:hasBindErrors name="nameOfYourModelAttribute">
     <c:if test="${errors.globalErrorCount > 0}">
         <div class="alert alert-danger"><form:errors/></div>
@@ -63,9 +60,6 @@
                     <div class="form-group">
                         <form:label path="email" for="email">Your email:</form:label>
                         <form:input path="email" type="text" name="email" class="form-control" id="email" required="required" placeholder="email"/>
-                        <%--<c:if test="${not empty emailExistsError}">--%>
-                            <%--${emailExistsError}--%>
-                        <%--</c:if>--%>
                         <form:errors path="email" cssClass="has-error"/>
                     </div>
                     <div class="form-group">
@@ -76,9 +70,6 @@
                     <div class="form-group">
                         <form:label path="matchingPassword" for="pwdMatches">Confirm your password:</form:label>
                         <form:input path="matchingPassword" type="password" name="matchingPassword" class="form-control" id="pwdMatches" required="required" placeholder="Password"/>
-                        <%--<c:if test="${not empty error}">--%>
-                            <%--${error}--%>
-                        <%--</c:if>--%>
                     </div>
 
                     <div class="form-group">
@@ -109,5 +100,4 @@
 
 </form:form>
 </body>
-<%--</body>--%>
 </html>

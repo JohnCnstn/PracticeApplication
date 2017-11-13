@@ -49,7 +49,7 @@ public class SignUpController {
         User registered = new User();
 
         if (!result.hasErrors()) {
-            registered = createUserAccount(accountDto, result);
+            registered = createUserAccount(accountDto);
         }
         if (registered == null) {
             result.rejectValue("email", "message", "Email already exists");
@@ -64,7 +64,7 @@ public class SignUpController {
         return model;
     }
 
-    private User createUserAccount(UserDto accountDto, BindingResult result) {
+    private User createUserAccount(UserDto accountDto) {
 
         User registered;
 

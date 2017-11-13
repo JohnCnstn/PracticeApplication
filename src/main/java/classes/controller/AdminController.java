@@ -14,7 +14,7 @@ public class AdminController {
     private UserService studentService;
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public String adminPage(Model model) {
+    public String showUserPage(Model model) {
         model.addAttribute("listOfStudents", studentService.getAll());
         return "admin";
     }
