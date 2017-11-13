@@ -66,9 +66,9 @@
                         <form:errors path="password" cssClass="has-error"/>
                     </div>
                     <div class="form-group">
-                        <form:label path="passwordMatches" for="pwdMatches">Your password:</form:label>
-                        <form:input path="passwordMatches" type="passwordMatches" name="passwordMatches" class="form-control" id="pwdMatches" required="required" placeholder="Password"/>
-                        <form:errors path="passwordMatches" cssClass="has-error"/>
+                        <form:label path="matchingPassword" for="pwdMatches">Your password:</form:label>
+                        <form:input path="matchingPassword" type="password" name="matchingPassword" class="form-control" id="pwdMatches" required="required" placeholder="Password"/>
+                        <form:errors path="matchingPassword" cssClass="has-error"/>
                     </div>
 
                     <div class="form-group">

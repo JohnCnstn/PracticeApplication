@@ -1,6 +1,7 @@
 package classes.data.dto;
 
 import classes.data.entity.UserProfile;
+import classes.data.validation.PasswordMatches;
 import classes.data.validation.ValidEmail;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,6 +9,7 @@ import lombok.Setter;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@PasswordMatches
 public class UserDto {
 
     @NotNull
@@ -33,6 +35,10 @@ public class UserDto {
     @Getter
     @Setter
     private String password;
+
+    @Getter
+    @Setter
+    private String matchingPassword;
 
     @ValidEmail
     @NotNull
