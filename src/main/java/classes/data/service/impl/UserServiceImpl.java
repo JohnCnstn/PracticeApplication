@@ -1,20 +1,27 @@
 package classes.data.service.impl;
 
+import classes.data.dto.FacultyDto;
 import classes.data.dto.UserDto;
-import classes.data.entity.*;
+import classes.data.entity.User;
+import classes.data.entity.UserProfile;
 import classes.data.repository.StudentRepository;
 import classes.data.service.UserService;
 import classes.data.validation.exception.EmailExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@Service("studentServiceImpl")
-@Transactional
-public class StudentServiceImpl implements UserService {
+@Service("userServiceImpl")
+public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Autowired
     private StudentRepository studentRepository;
@@ -27,6 +34,30 @@ public class StudentServiceImpl implements UserService {
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Transactional(readOnly = true)
+    public UserDetails loadUserByUsername(String userName)
+            throws UsernameNotFoundException {
+        User user = getByUserName(userName);
+        System.out.println("User : " + user);
+        if (user == null) {
+            System.out.println("User not found");
+            throw new UsernameNotFoundException("Username not found");
+        }
+        return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(),
+                true, true, true, true, getGrantedAuthorities(user));
+    }
+
+
+    private List<GrantedAuthority> getGrantedAuthorities(User user){
+        List<GrantedAuthority> authorities = new ArrayList<>();
+
+        UserProfile userProfile = user.getUserProfile();
+        System.out.println("UserProfile : " + userProfile);
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + userProfile.getType()));
+        System.out.print("authorities :"+authorities);
+        return authorities;
+    }
 
     @Override
     public User getByName(String name) {
@@ -45,7 +76,7 @@ public class StudentServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public User registerNewUserAccount(UserDto accountDto) throws EmailExistsException {
+    public User registerNewUserAccount(UserDto accountDto, FacultyDto facultyDto) throws EmailExistsException {
 
         if (emailExist(accountDto.getEmail())) {
             throw new EmailExistsException("There is an account with that email address: "  + accountDto.getEmail());

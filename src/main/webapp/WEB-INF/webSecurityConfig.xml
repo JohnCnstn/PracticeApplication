@@ -46,7 +46,7 @@
     </http>
 
     <authentication-manager id="authManager">
-        <authentication-provider user-service-ref="myUserDetailsService">
+        <authentication-provider user-service-ref="userServiceImpl">
             <password-encoder ref="bcrypt" />
         </authentication-provider>
     </authentication-manager>
@@ -54,7 +54,7 @@
     <beans:bean id="customAuthenticationSuccessHandler"
                 class="classes.handler.CustomAuthenticationSuccessHandler" />
 
-    <beans:bean id="myUserDetailsService" class="classes.data.service.impl.MyUserDetailsService" />
+    <beans:bean id="userServiceImpl" class="classes.data.service.impl.UserServiceImpl" />
 
     <beans:bean id="bcrypt" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 

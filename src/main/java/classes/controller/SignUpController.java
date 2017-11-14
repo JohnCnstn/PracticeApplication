@@ -1,5 +1,6 @@
 package classes.controller;
 
+import classes.data.dto.FacultyDto;
 import classes.data.dto.UserDto;
 import classes.data.entity.User;
 import classes.data.service.UserService;
@@ -33,13 +34,14 @@ public class SignUpController {
 
         model.setViewName("sign-up");
         model.addObject("user", new UserDto());
+//        model.addObject("faculty", new FacultyDto());
         model.addObject("list", facultyService.getAll());
 
         return model;
     }
 
     @RequestMapping(value = "/sign-up", method = RequestMethod.POST)
-    public ModelAndView registerUserAccount(
+    public ModelAndView registerUserAccount(@ModelAttribute("faculty") FacultyDto facultyDto,
             @Valid @ModelAttribute("user") UserDto accountDto,
             BindingResult result) {
 
@@ -48,7 +50,7 @@ public class SignUpController {
         User registered = new User();
 
         if (!result.hasErrors()) {
-            registered = createUserAccount(accountDto);
+            registered = createUserAccount(accountDto, facultyDto);
         }
         if (registered == null) {
             result.rejectValue("email", "message", "Email already exists");
@@ -63,12 +65,12 @@ public class SignUpController {
         return model;
     }
 
-    private User createUserAccount(UserDto accountDto) {
+    private User createUserAccount(UserDto accountDto, FacultyDto facultyDto) {
 
         User registered;
 
         try {
-            registered = service.registerNewUserAccount(accountDto);
+            registered = service.registerNewUserAccount(accountDto, facultyDto);
         } catch (EmailExistsException e) {
             return null;
         }
