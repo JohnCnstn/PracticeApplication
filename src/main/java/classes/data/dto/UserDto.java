@@ -50,7 +50,7 @@ public class UserDto {
 
     @Getter
     @Setter
-    private String faculty;
+    private Faculty faculty;
 
     @Getter
     @Setter

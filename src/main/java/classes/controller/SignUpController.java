@@ -34,7 +34,7 @@ public class SignUpController {
 
         model.setViewName("sign-up");
         model.addObject("user", new UserDto());
-//        model.addObject("faculty", new FacultyDto());
+        model.addObject("faculty", new FacultyDto());
         model.addObject("list", facultyService.getAll());
 
         return model;

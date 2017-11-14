@@ -2,6 +2,7 @@ package classes.data.service.impl;
 
 import classes.data.dto.FacultyDto;
 import classes.data.dto.UserDto;
+import classes.data.entity.Faculty;
 import classes.data.entity.User;
 import classes.data.entity.UserProfile;
 import classes.data.repository.StudentRepository;
@@ -84,6 +85,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
         User user = new User();
 
+        Faculty faculty = facultyService.getByName(facultyDto.getName());
+
         user.setFirstName(accountDto.getFirstName());
         user.setLastName(accountDto.getLastName());
         user.setEmail(accountDto.getEmail());
@@ -91,7 +94,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
         user.setPassword(bCryptPasswordEncoder.encode(accountDto.getPassword()));
 
-        user.setFaculty(facultyService.getByName(accountDto.getFaculty()));
+        user.setFaculty(faculty);
 
         user.setUserProfile(userProfileService.getByType("USER"));
 

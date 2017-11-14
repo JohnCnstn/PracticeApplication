@@ -6,5 +6,9 @@ import lombok.Setter;
 public class FacultyDto {
     @Getter
     @Setter
+    private long id;
+
+    @Getter
+    @Setter
     private String name;
 }

@@ -9,7 +9,4 @@ public interface FacultyRepository extends JpaRepository<Faculty, Long> {
 
     @Query("select f from Faculty f where f.name = :name")
     Faculty findByName(@Param("name") String name);
-
-    @Query("select f from Faculty f where f.id = :id")
-    Faculty findById(long id);
 }
