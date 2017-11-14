@@ -8,6 +8,7 @@ import classes.data.entity.UserProfile;
 import classes.data.repository.StudentRepository;
 import classes.data.service.UserService;
 import classes.data.validation.exception.EmailExistsException;
+import classes.data.validation.exception.UserNameExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -77,7 +78,11 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Transactional
     @Override
-    public User registerNewUserAccount(UserDto accountDto, FacultyDto facultyDto) throws EmailExistsException {
+    public User registerNewUserAccount(UserDto accountDto, FacultyDto facultyDto) throws UserNameExistsException, EmailExistsException {
+
+        if (userNameExists(accountDto.getUserName())) {
+            throw new UserNameExistsException("There is an account with that Username: "  + accountDto.getUserName());
+        }
 
         if (emailExist(accountDto.getEmail())) {
             throw new EmailExistsException("There is an account with that email address: "  + accountDto.getEmail());
@@ -99,6 +104,11 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         user.setUserProfile(userProfileService.getByType("USER"));
 
         return studentRepository.save(user);
+    }
+
+    private boolean userNameExists(String userName) {
+        User user = studentRepository.findByUserName(userName);
+        return user != null;
     }
 
     private boolean emailExist(String email) {

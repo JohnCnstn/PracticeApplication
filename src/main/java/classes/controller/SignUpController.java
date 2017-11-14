@@ -2,10 +2,10 @@ package classes.controller;
 
 import classes.data.dto.FacultyDto;
 import classes.data.dto.UserDto;
-import classes.data.entity.User;
 import classes.data.service.UserService;
 import classes.data.service.impl.FacultyServiceImpl;
 import classes.data.validation.exception.EmailExistsException;
+import classes.data.validation.exception.UserNameExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -47,14 +47,10 @@ public class SignUpController {
 
         ModelAndView model = new ModelAndView();
 
-        User registered = new User();
-
         if (!result.hasErrors()) {
-            registered = createUserAccount(accountDto, facultyDto);
+            createUserAccount(accountDto, facultyDto, result);
         }
-        if (registered == null) {
-            result.rejectValue("email", "message", "Email already exists");
-        }
+
         if (result.hasErrors()) {
             model.addObject("list", facultyService.getAll());
             model.setViewName("sign-up");
@@ -65,16 +61,14 @@ public class SignUpController {
         return model;
     }
 
-    private User createUserAccount(UserDto accountDto, FacultyDto facultyDto) {
-
-        User registered;
+    private void createUserAccount(UserDto accountDto, FacultyDto facultyDto, BindingResult result) {
 
         try {
-            registered = service.registerNewUserAccount(accountDto, facultyDto);
+            service.registerNewUserAccount(accountDto, facultyDto);
+        } catch (UserNameExistsException e) {
+            result.rejectValue("userName", "message", "Username already exists");
         } catch (EmailExistsException e) {
-            return null;
+            result.rejectValue("email", "message", "Email already exists");
         }
-
-        return registered;
     }
 }
