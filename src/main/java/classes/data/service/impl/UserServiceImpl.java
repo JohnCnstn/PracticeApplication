@@ -1,5 +1,6 @@
 package classes.data.service.impl;
 
+import classes.data.detail.CustomUserDetail;
 import classes.data.dto.FacultyDto;
 import classes.data.dto.UserDto;
 import classes.data.entity.Faculty;
@@ -12,7 +13,6 @@ import classes.data.validation.exception.UserNameExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Transactional(readOnly = true)
-    public UserDetails loadUserByUsername(String userName)
+    public CustomUserDetail loadUserByUsername(String userName)
             throws UsernameNotFoundException {
         User user = getByUserName(userName);
         System.out.println("User : " + user);
@@ -46,8 +46,12 @@ public class UserServiceImpl implements UserDetailsService, UserService {
             System.out.println("User not found");
             throw new UsernameNotFoundException("Username not found");
         }
-        return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(),
-                true, true, true, true, getGrantedAuthorities(user));
+
+        CustomUserDetail customUserDetail=new CustomUserDetail();
+        customUserDetail.setUser(user);
+        customUserDetail.setAuthorities(getGrantedAuthorities(user));
+
+        return customUserDetail;
     }
 
 
@@ -57,7 +61,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         UserProfile userProfile = user.getUserProfile();
         System.out.println("UserProfile : " + userProfile);
         authorities.add(new SimpleGrantedAuthority("ROLE_" + userProfile.getType()));
-        System.out.print("authorities :"+authorities);
+        System.out.print("authorities :" + authorities);
         return authorities;
     }
 

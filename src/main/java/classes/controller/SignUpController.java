@@ -62,7 +62,6 @@ public class SignUpController {
     }
 
     private void createUserAccount(UserDto accountDto, FacultyDto facultyDto, BindingResult result) {
-
         try {
             service.registerNewUserAccount(accountDto, facultyDto);
         } catch (UserNameExistsException e) {
