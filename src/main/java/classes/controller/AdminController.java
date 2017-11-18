@@ -26,8 +26,7 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/{id}/delete", method = RequestMethod.GET)
     public String deleteRegistration(@PathVariable("id") int id) {
-        User user = studentService.findOne(id);
-        System.out.println(user);
+//        User user = studentService.findOne(id);
         return "access";
     }
 
