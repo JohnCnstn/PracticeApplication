@@ -19,7 +19,7 @@
 </head>
 <body>
 
-    <%--<c:if test="${user == true}">--%>
+    <%--<c:if test="${user}">--%>
         <%--only admin could see this content--%>
     <%--</c:if>--%>
 
@@ -55,6 +55,11 @@
                     <tr>
                         <td>${i.firstName}</td>
                         <td>${i.lastName}</td>
+                        <td>
+                                <spring:url value="/admin/${i.id}/delete" var="deleteUrl" />
+
+                            <button class="btn btn-danger"
+                                    onclick="location.href='${deleteUrl}'">Delete</button>
                     </tr>
                 </c:forEach>
 

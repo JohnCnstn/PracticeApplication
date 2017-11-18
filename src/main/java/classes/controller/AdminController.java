@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,6 +22,13 @@ public class AdminController {
         model.addAttribute("user", getPrincipal());
         model.addAttribute("listOfStudents", studentService.getAll());
         return "admin";
+    }
+
+    @RequestMapping(value = "/admin/{id}/delete", method = RequestMethod.GET)
+    public String deleteRegistration(@PathVariable("id") int id) {
+        User user = studentService.findOne(id);
+        System.out.println(user);
+        return "access";
     }
 
     private User getPrincipal(){
