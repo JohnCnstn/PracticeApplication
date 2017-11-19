@@ -36,7 +36,7 @@ public class AdminController {
     public String showUserPage(Model model) {
         model.addAttribute("user", getPrincipal());
         model.addAttribute("listOfStudents", userService.getAll());
-        return "admin";
+        return "students";
     }
 
     @RequestMapping(value = "/admin/userInfo/{id}", method = RequestMethod.GET)

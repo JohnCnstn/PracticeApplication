@@ -1,7 +1,10 @@
 package classes.controller;
 
+import classes.data.detail.CustomUserDetail;
+import classes.data.entity.User;
 import classes.data.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,11 +14,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HeadMasterController {
 
     @Autowired
-    private UserService studentService;
+    private UserService userService;
 
-    @RequestMapping(value = "/headMaster", method = RequestMethod.GET)
-    public String adminPage(Model model) {
-        model.addAttribute("listOfStudents", studentService.getAll());
-        return "head-master";
+    @RequestMapping(value = "/head-master", method = RequestMethod.GET)
+    public String showUserPage(Model model) {
+        model.addAttribute("user", getPrincipal());
+        model.addAttribute("listOfStudents", userService.getAll());
+        return "students";
+    }
+
+    private User getPrincipal(){
+        CustomUserDetail customUserDetail = (CustomUserDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return customUserDetail.getUser();
     }
 }
