@@ -2,8 +2,10 @@ package classes.data.service.impl;
 
 import classes.data.detail.CustomUserDetail;
 import classes.data.dto.FacultyDto;
+import classes.data.dto.PracticeDto;
 import classes.data.dto.UserDto;
 import classes.data.entity.Faculty;
+import classes.data.entity.Practice;
 import classes.data.entity.User;
 import classes.data.entity.UserProfile;
 import classes.data.repository.StudentRepository;
@@ -78,6 +80,17 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Override
     public User getByUserName(String userName) {
         return studentRepository.findByUserName(userName);
+    }
+
+    @Override
+    public User setStudentOnPractice(User user, PracticeDto practiceDto) {
+
+        Practice practice = new Practice();
+        practice.setStart_date(practiceDto.getStart_date());
+
+        user.setPractice(practice);
+
+        return studentRepository.save(user);
     }
 
     @Override

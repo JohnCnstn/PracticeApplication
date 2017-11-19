@@ -1,6 +1,8 @@
 package classes.controller;
 
 import classes.data.detail.CustomUserDetail;
+import classes.data.dto.PracticeDto;
+import classes.data.dto.UserDto;
 import classes.data.entity.Practice;
 import classes.data.entity.User;
 import classes.data.service.UserService;
@@ -34,9 +36,11 @@ public class AdminController {
         User student = studentService.findOne(id);
 
         Date date = new Date();
-        Practice practice = new Practice();
-        practice.setStart_date(date);
-        student.setPractice(practice);
+
+        PracticeDto practiceDto = new PracticeDto();
+        practiceDto.setStart_date(date);
+
+        setStudentOnPractice(student, practiceDto);
 
         ModelAndView model = new ModelAndView("student-info");
         model.addObject("student", student);
@@ -44,14 +48,12 @@ public class AdminController {
         return model;
     }
 
-    @RequestMapping(value = "/admin/{id}/delete", method = RequestMethod.GET)
-    public String deleteRegistration(@PathVariable("id") int id) {
-//        User user = studentService.findOne(id);
-        return "student-info";
-    }
-
     private User getPrincipal(){
         CustomUserDetail customUserDetail = (CustomUserDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return customUserDetail.getUser();
+    }
+
+    private void setStudentOnPractice(User user, PracticeDto practiceDto) {
+
     }
 }

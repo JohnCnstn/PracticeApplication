@@ -12,7 +12,7 @@ import java.util.List;
 public class FacultyServiceImpl implements FacultyService {
 
     @Autowired
-    FacultyRepository facultyRepository;
+    private FacultyRepository facultyRepository;
 
     @Override
     public List<Faculty> getAll() {
