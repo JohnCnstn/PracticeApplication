@@ -19,10 +19,6 @@
 </head>
 <body>
 
-    <%--<c:if test="${user}">--%>
-        <%--only admin could see this content--%>
-    <%--</c:if>--%>
-
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -46,7 +42,6 @@
                 <tr>
                     <th><span>First Name</span></th>
                     <th><span>Second Name</span></th>
-                    <th><span>Faculty</span></th>
                 </tr>
             </thead>
             <tbody>

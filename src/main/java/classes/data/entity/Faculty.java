@@ -13,7 +13,7 @@ public class Faculty {
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name= "increment", strategy= "increment")
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", length = 6, nullable = false)
     @Getter
     @Setter
     private long id;
@@ -28,5 +28,4 @@ public class Faculty {
     @Getter
     @Setter
     private University university;
-
 }

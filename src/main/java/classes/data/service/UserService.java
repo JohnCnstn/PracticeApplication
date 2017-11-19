@@ -1,5 +1,6 @@
 package classes.data.service;
 
+import classes.data.dto.CompanyDto;
 import classes.data.dto.FacultyDto;
 import classes.data.dto.PracticeDto;
 import classes.data.dto.UserDto;
@@ -15,5 +16,6 @@ public interface UserService {
     User getByUserName(String userName);
     User setStudentOnPractice(User user, PracticeDto practiceDto);
     User registerNewUserAccount(UserDto accountDto, FacultyDto facultyDto) throws UserNameExistsException, EmailExistsException;
+    User registerNewHeadMasterAccount(UserDto accountDto, CompanyDto companyDto) throws UserNameExistsException, EmailExistsException;
     List<User> getAll();
 }

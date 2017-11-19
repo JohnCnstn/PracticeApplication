@@ -2,7 +2,6 @@ package classes.controller;
 
 import classes.data.detail.CustomUserDetail;
 import classes.data.dto.CompanyDto;
-import classes.data.dto.FacultyDto;
 import classes.data.dto.PracticeDto;
 import classes.data.dto.UserDto;
 import classes.data.entity.User;
@@ -58,12 +57,12 @@ public class AdminController {
         return model;
     }
 
-    @RequestMapping(value = "/admin/registration", method = RequestMethod.GET)
-    public ModelAndView registerHeadMaster() {
+    @RequestMapping(value = "/admin/sign-up", method = RequestMethod.GET)
+    public ModelAndView showRegisterHeadMaster() {
 
         ModelAndView model = new ModelAndView();
 
-        model.setViewName("registration");
+        model.setViewName("sign-up");
         model.addObject("user", new UserDto());
         model.addObject("company", new CompanyDto());
         model.addObject("list", companyService.getAll());
@@ -72,14 +71,35 @@ public class AdminController {
 
     }
 
+    @RequestMapping(value = "/admin/sign-up", method = RequestMethod.POST)
+    public ModelAndView registerHeadMaster(@ModelAttribute("company") CompanyDto companyDto,
+                                            @Valid @ModelAttribute("user") UserDto accountDto,
+                                            BindingResult result) {
+
+        ModelAndView model = new ModelAndView();
+
+        if (!result.hasErrors()) {
+            createHeadMasterAccount(accountDto, companyDto, result);
+        }
+
+        if (result.hasErrors()) {
+            model.addObject("list", companyService.getAll());
+            model.setViewName("sign-up");
+        } else {
+            model.setViewName("redirect:/admin");
+        }
+        model.addObject("user", accountDto);
+        return model;
+    }
+
     private User getPrincipal(){
         CustomUserDetail customUserDetail = (CustomUserDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return customUserDetail.getUser();
     }
 
-    private void createHeadMasterAccount(UserDto accountDto, FacultyDto facultyDto, BindingResult result) {
+    private void createHeadMasterAccount(UserDto accountDto, CompanyDto companyDto, BindingResult result) {
         try {
-            userService.registerNewUserAccount(accountDto, facultyDto);
+            userService.registerNewHeadMasterAccount(accountDto, companyDto);
         } catch (UserNameExistsException e) {
             result.rejectValue("userName", "message", "Username already exists");
         } catch (EmailExistsException e) {

@@ -32,7 +32,7 @@ public class SignUpController {
 
         ModelAndView model = new ModelAndView();
 
-        model.setViewName("registration");
+        model.setViewName("sign-up");
         model.addObject("user", new UserDto());
         model.addObject("faculty", new FacultyDto());
         model.addObject("list", facultyService.getAll());
@@ -53,7 +53,7 @@ public class SignUpController {
 
         if (result.hasErrors()) {
             model.addObject("list", facultyService.getAll());
-            model.setViewName("registration");
+            model.setViewName("sign-up");
         } else {
             model.setViewName("user");
         }

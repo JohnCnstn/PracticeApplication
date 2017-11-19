@@ -55,11 +55,17 @@ public class User {
     @Setter
     private Faculty faculty;
 
-    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "practice_id")
     @Getter
     @Setter
     private Practice practice;
+
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "company_id")
+    @Getter
+    @Setter
+    private Company company;
 
     @Override
     public String toString() {
@@ -72,6 +78,8 @@ public class User {
                 ", email='" + email + '\'' +
                 ", userProfile=" + userProfile +
                 ", faculty=" + faculty +
+                ", practice=" + practice +
+                ", company=" + company +
                 '}';
     }
 }

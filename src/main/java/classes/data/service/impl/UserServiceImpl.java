@@ -1,13 +1,11 @@
 package classes.data.service.impl;
 
 import classes.data.detail.CustomUserDetail;
+import classes.data.dto.CompanyDto;
 import classes.data.dto.FacultyDto;
 import classes.data.dto.PracticeDto;
 import classes.data.dto.UserDto;
-import classes.data.entity.Faculty;
-import classes.data.entity.Practice;
-import classes.data.entity.User;
-import classes.data.entity.UserProfile;
+import classes.data.entity.*;
 import classes.data.repository.StudentRepository;
 import classes.data.service.UserService;
 import classes.data.validation.exception.EmailExistsException;
@@ -32,6 +30,9 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Autowired
     private FacultyServiceImpl facultyService;
+
+    @Autowired
+    private CompanyServiceImpl companyService;
 
     @Autowired
     private UserProfileServiceImpl userProfileService;
@@ -124,6 +125,36 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         user.setFaculty(faculty);
 
         user.setUserProfile(userProfileService.getByType("USER"));
+
+        return studentRepository.save(user);
+    }
+
+    @Transactional
+    @Override
+    public User registerNewHeadMasterAccount(UserDto accountDto, CompanyDto companyDto) throws UserNameExistsException, EmailExistsException {
+
+        if (userNameExists(accountDto.getUserName())) {
+            throw new UserNameExistsException("There is an account with that Username: "  + accountDto.getUserName());
+        }
+
+        if (emailExist(accountDto.getEmail())) {
+            throw new EmailExistsException("There is an account with that email address: "  + accountDto.getEmail());
+        }
+
+        User user = new User();
+
+        Company company = companyService.findOne(companyDto.getId());
+
+        user.setFirstName(accountDto.getFirstName());
+        user.setLastName(accountDto.getLastName());
+        user.setEmail(accountDto.getEmail());
+        user.setUserName(accountDto.getUserName());
+
+        user.setPassword(bCryptPasswordEncoder.encode(accountDto.getPassword()));
+
+        user.setCompany(company);
+
+        user.setUserProfile(userProfileService.getByType("HEAD_MASTER"));
 
         return studentRepository.save(user);
     }

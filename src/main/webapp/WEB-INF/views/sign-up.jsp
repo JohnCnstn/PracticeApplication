@@ -101,13 +101,6 @@
 
                     </div>
 
-                    <div class="check-box">
-                        <div class="keeplogin">
-                            <input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" />
-                            <label for="loginkeeping">Keep me logged in</label>
-                        </div>
-                    </div>
-
                     <div class="sign-up button">
                         <input type="submit" value="Sign up" />
                     </div>
