@@ -49,12 +49,19 @@ public class AdminController {
         PracticeDto practiceDto = new PracticeDto();
         practiceDto.setStart_date(date);
 
-//        setStudentOnPractice(student, practiceDto);
-
         ModelAndView model = new ModelAndView("student-info");
         model.addObject("student", student);
 
         return model;
+    }
+
+    @RequestMapping(value = "/admin/delete/{id}", method = RequestMethod.GET)
+    public ModelAndView deleteUser(@PathVariable("id") int id) {
+
+        userService.delete(id);
+
+        return new ModelAndView("redirect:/admin");
+
     }
 
     @RequestMapping(value = "/admin/sign-up", method = RequestMethod.GET)

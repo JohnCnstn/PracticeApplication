@@ -159,6 +159,11 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         return studentRepository.save(user);
     }
 
+    @Override
+    public void delete(long id) {
+        studentRepository.delete(id);
+    }
+
     private boolean userNameExists(String userName) {
         User user = studentRepository.findByUserName(userName);
         return user != null;

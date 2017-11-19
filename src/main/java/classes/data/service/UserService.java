@@ -17,5 +17,6 @@ public interface UserService {
     User setStudentOnPractice(User user, PracticeDto practiceDto);
     User registerNewUserAccount(UserDto accountDto, FacultyDto facultyDto) throws UserNameExistsException, EmailExistsException;
     User registerNewHeadMasterAccount(UserDto accountDto, CompanyDto companyDto) throws UserNameExistsException, EmailExistsException;
+    void delete(long id);
     List<User> getAll();
 }
