@@ -75,9 +75,9 @@
                     <div class="form-group">
                         <label>Select a university:</label>
 
-                        <select name="name">
+                        <select name="id">
                             <c:forEach items="${list}" var="i">
-                                <option value="${i.name}">${i.name}</option>
+                                <option value="${i.id}">${i.name}</option>
                             </c:forEach>
                         </select>
 

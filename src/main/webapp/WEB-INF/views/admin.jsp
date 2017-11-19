@@ -56,10 +56,10 @@
                         <td>${i.firstName}</td>
                         <td>${i.lastName}</td>
                         <td>
-                                <spring:url value="/admin/${i.id}/delete" var="deleteUrl" />
+                                <spring:url value="/admin/userInfo/${i.id}" var="userUrl" />
 
-                            <button class="btn btn-danger"
-                                    onclick="location.href='${deleteUrl}'">Delete</button>
+                            <button class="btn btn-info"
+                                    onclick="location.href='${userUrl}'">Info</button>
                     </tr>
                 </c:forEach>
 

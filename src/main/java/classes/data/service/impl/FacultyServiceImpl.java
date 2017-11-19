@@ -15,17 +15,12 @@ public class FacultyServiceImpl implements FacultyService {
     FacultyRepository facultyRepository;
 
     @Override
-    public Faculty getById(long id) {
-        return facultyRepository.findOne(id);
-    }
-
-    @Override
-    public Faculty getByName(String name) {
-        return facultyRepository.findByName(name);
-    }
-
-    @Override
     public List<Faculty> getAll() {
         return facultyRepository.findAll();
+    }
+
+    @Override
+    public Faculty findOne(long id) {
+        return facultyRepository.findOne(id);
     }
 }

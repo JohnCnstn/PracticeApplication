@@ -99,7 +99,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
         User user = new User();
 
-        Faculty faculty = facultyService.getByName(facultyDto.getName());
+        Faculty faculty = facultyService.findOne(facultyDto.getId());
 
         user.setFirstName(accountDto.getFirstName());
         user.setLastName(accountDto.getLastName());

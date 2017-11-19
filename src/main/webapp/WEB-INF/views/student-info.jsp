@@ -11,6 +11,10 @@
     <title>Title</title>
 </head>
 <body>
-
+    <h1>${student.userName}</h1>
+    <h1>${student.firstName}</h1>
+    <h1>${student.email}</h1>
+    <h1>${student.faculty.name}</h1>
+    <h1>${student.faculty.university.name}</h1>
 </body>
 </html>

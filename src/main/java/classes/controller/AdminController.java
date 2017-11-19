@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AdminController {
@@ -24,10 +25,18 @@ public class AdminController {
         return "admin";
     }
 
+    @RequestMapping(value = "/admin/userInfo/{id}", method = RequestMethod.GET)
+    public ModelAndView showStudentInfo(@PathVariable("id") int id) {
+        User student = studentService.findOne(id);
+        ModelAndView model = new ModelAndView("student-info");
+        model.addObject("student", student);
+        return model;
+    }
+
     @RequestMapping(value = "/admin/{id}/delete", method = RequestMethod.GET)
     public String deleteRegistration(@PathVariable("id") int id) {
 //        User user = studentService.findOne(id);
-        return "access";
+        return "student-info";
     }
 
     private User getPrincipal(){
