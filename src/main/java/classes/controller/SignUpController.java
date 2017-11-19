@@ -55,9 +55,8 @@ public class SignUpController {
             model.addObject("list", facultyService.getAll());
             model.setViewName("sign-up");
         } else {
-            model.setViewName("user");
+            model.setViewName("redirect:/login");
         }
-        model.addObject("user", accountDto);
         return model;
     }
 
