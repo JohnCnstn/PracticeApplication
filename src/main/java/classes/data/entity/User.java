@@ -49,7 +49,7 @@ public class User {
     @Setter
     private UserProfile userProfile;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "faculty_id", nullable = false)
     @Getter
     @Setter

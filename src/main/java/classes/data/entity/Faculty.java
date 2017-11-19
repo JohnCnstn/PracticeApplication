@@ -23,7 +23,7 @@ public class Faculty {
     @Setter
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "university_id", nullable = false)
     @Getter
     @Setter
