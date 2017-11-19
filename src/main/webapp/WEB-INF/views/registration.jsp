@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <html>
 <head>
@@ -73,13 +74,30 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Select a university:</label>
 
-                        <select name="id">
-                            <c:forEach items="${list}" var="i">
-                                <option value="${i.id}">${i.name}</option>
-                            </c:forEach>
-                        </select>
+                        <sec:authorize access="isAnonymous()">
+                            <label>Select a university:
+
+                                <select name="id">
+                                    <c:forEach items="${list}" var="i">
+                                        <option value="${i.id}">${i.name}</option>
+                                    </c:forEach>
+                                </select>
+
+                            </label>
+                        </sec:authorize>
+
+                        <sec:authorize access="hasRole('ADMIN')">
+                            <label>Select a company:
+
+                                <select name="id">
+                                    <c:forEach items="${list}" var="i">
+                                        <option value="${i.id}">${i.name}</option>
+                                    </c:forEach>
+                                </select>
+
+                            </label>
+                        </sec:authorize>
 
                     </div>
 

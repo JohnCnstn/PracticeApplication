@@ -50,7 +50,7 @@ public class User {
     private UserProfile userProfile;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "faculty_id", nullable = false)
+    @JoinColumn(name = "faculty_id")
     @Getter
     @Setter
     private Faculty faculty;

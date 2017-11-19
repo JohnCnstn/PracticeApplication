@@ -3,8 +3,7 @@ package classes.data.dto;
 import lombok.Getter;
 import lombok.Setter;
 
-public class FacultyDto {
-
+public class CompanyDto {
     @Getter
     @Setter
     private long id;
