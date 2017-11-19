@@ -1,6 +1,7 @@
 package classes.data.dto;
 
 import classes.data.entity.Faculty;
+import classes.data.entity.Practice;
 import classes.data.entity.UserProfile;
 import classes.data.validation.PasswordMatches;
 import classes.data.validation.ValidEmail;
@@ -55,4 +56,8 @@ public class UserDto {
     @Getter
     @Setter
     private UserProfile userProfile;
+
+    @Getter
+    @Setter
+    private Practice practice;
 }

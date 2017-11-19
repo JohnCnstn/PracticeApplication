@@ -55,6 +55,12 @@ public class User {
     @Setter
     private Faculty faculty;
 
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "practice_id")
+    @Getter
+    @Setter
+    private Practice practice;
+
     @Override
     public String toString() {
         return "User{" +

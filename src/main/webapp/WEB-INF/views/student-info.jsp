@@ -16,5 +16,6 @@
     <h1>${student.email}</h1>
     <h1>${student.faculty.name}</h1>
     <h1>${student.faculty.university.name}</h1>
+    <h1>${student.practice.start_date}</h1>
 </body>
 </html>

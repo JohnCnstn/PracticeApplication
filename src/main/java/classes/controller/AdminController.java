@@ -1,6 +1,7 @@
 package classes.controller;
 
 import classes.data.detail.CustomUserDetail;
+import classes.data.entity.Practice;
 import classes.data.entity.User;
 import classes.data.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Date;
 
 @Controller
 public class AdminController {
@@ -27,9 +30,17 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/userInfo/{id}", method = RequestMethod.GET)
     public ModelAndView showStudentInfo(@PathVariable("id") int id) {
+
         User student = studentService.findOne(id);
+
+        Date date = new Date();
+        Practice practice = new Practice();
+        practice.setStart_date(date);
+        student.setPractice(practice);
+
         ModelAndView model = new ModelAndView("student-info");
         model.addObject("student", student);
+
         return model;
     }
 
