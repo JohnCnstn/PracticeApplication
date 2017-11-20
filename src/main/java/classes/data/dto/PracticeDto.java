@@ -11,17 +11,17 @@ public class PracticeDto {
 
     @Getter
     @Setter
-    private Date start_date;
+    private String startDate;
 
     @Getter
     @Setter
-    private Date end_date;
+    private String endDate;
 
-    @Getter
-    @Setter
-    private User user;
-
-    @Getter
-    @Setter
-    private HeadMaster headMaster;
+//    @Getter
+//    @Setter
+//    private User user;
+//
+//    @Getter
+//    @Setter
+//    private HeadMaster headMaster;
 }

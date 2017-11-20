@@ -18,6 +18,7 @@
         <hb.manager>4.3.11.Final</hb.manager>
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <mysql.version>5.1.31</mysql.version>
+        <jackson.version>2.7.5</jackson.version>
     </properties>
 
     <dependencies>
@@ -28,6 +29,11 @@
             <version>2.0.0.Final</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>

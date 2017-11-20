@@ -84,14 +84,14 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
-    public User setStudentOnPractice(User user, PracticeDto practiceDto) {
+    public void setStudentOnPractice(User user, PracticeDto practiceDto) {
 
         Practice practice = new Practice();
-        practice.setStart_date(practiceDto.getStart_date());
+        practice.setStartDate(practiceDto.getStartDate());
 
         user.setPractice(practice);
 
-        return studentRepository.save(user);
+        studentRepository.save(user);
     }
 
     @Override

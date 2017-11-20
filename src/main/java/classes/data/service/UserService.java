@@ -14,7 +14,7 @@ public interface UserService {
     User findOne(long id);
     User getByName(String name);
     User getByUserName(String userName);
-    User setStudentOnPractice(User user, PracticeDto practiceDto);
+    void setStudentOnPractice(User user, PracticeDto practiceDto);
     User registerNewUserAccount(UserDto accountDto, FacultyDto facultyDto) throws UserNameExistsException, EmailExistsException;
     User registerNewHeadMasterAccount(UserDto accountDto, CompanyDto companyDto) throws UserNameExistsException, EmailExistsException;
     void delete(long id);

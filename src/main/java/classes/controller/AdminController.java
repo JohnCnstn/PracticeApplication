@@ -44,11 +44,6 @@ public class AdminController {
 
         User student = userService.findOne(id);
 
-        Date date = new Date();
-
-        PracticeDto practiceDto = new PracticeDto();
-        practiceDto.setStart_date(date);
-
         ModelAndView model = new ModelAndView("student-info");
         model.addObject("student", student);
 

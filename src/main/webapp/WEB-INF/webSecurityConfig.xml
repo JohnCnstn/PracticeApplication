@@ -43,6 +43,8 @@
             delete-cookies="JSESSIONID"
         />
 
+        <csrf disabled="true"/>
+
     </http>
 
     <authentication-manager id="authManager">

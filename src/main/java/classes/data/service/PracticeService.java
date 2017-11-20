@@ -3,6 +3,9 @@ package classes.data.service;
 import classes.data.dto.PracticeDto;
 import classes.data.entity.Practice;
 
+import java.util.List;
+
 public interface PracticeService {
-//    Practice registerNewPractice(PracticeDto practiceDto);
+    List<Practice> getAll();
+    Practice registerNewPractice(PracticeDto practiceDto);
 }
