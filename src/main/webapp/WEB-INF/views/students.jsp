@@ -43,7 +43,7 @@
         <table class="tablesorter" id="keywords" cellspacing="0" cellpadding="0">
             <thead>
                 <tr>
-                    <th></th>
+                    <%--<th></th>--%>
                     <th><span>First Name</span></th>
                     <th><span>Second Name</span></th>
                 </tr>
@@ -52,7 +52,7 @@
 
                 <c:forEach items="${listOfStudents}" var="i">
                     <tr>
-                        <td><form:checkbox path="student.id" value="${i.id}"/></td>
+                        <%--<td><form:checkbox path="student.id" value="${i.id}"/></td>--%>
                         <td>${i.firstName}</td>
                         <td>${i.lastName}</td>
                         <td>
@@ -64,25 +64,48 @@
                                         onclick="location.href='${userProfileUrl}'">Info</button>
 
                             </sec:authorize>
+
+                            <sec:authorize access="hasRole('ADMIN')">
+
+                                <spring:url value="/admin/userInfo/${i.id}" var="userProfileUrl" />
+
+                                <button class="btn btn-info"
+                                        onclick="location.href='${userProfileUrl}'">Info</button>
+
+                            </sec:authorize>
+
                         </td>
                     </tr>
                 </c:forEach>
 
-                <sec:authorize access="hasRole('ADMIN')">
+                <%--<div class="form-group has-feedback">--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label>Estimation Date:</label>--%>
+                        <%--<div class="input-group date">--%>
+                            <%--<div class="input-group-addon">--%>
+                                <%--<i class="fa fa-calendar"></i>--%>
+                            <%--</div>--%>
+                            <%--<input type="date" class="form-control pull-right"--%>
+                                   <%--id="datepicker"/>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
 
-                    <spring:url value="/admin/userInfo/${student.id}" var="userProfileUrl" />
+                <%--<sec:authorize access="hasRole('ADMIN')">--%>
 
-                    <spring:url value="/admin/delete/${student.id}" var="deleteUserUrl" />
+                    <%--<spring:url value="/admin/delete/${i.id}" var="deleteUserUrl" />--%>
 
-                    <button class="btn btn-danger"
-                            onclick="location.href='${deleteUserUrl}'">Delete</button>
+                    <%--<button class="btn btn-danger"--%>
+                            <%--onclick="location.href='${deleteUserUrl}'">Delete</button>--%>
 
-                </sec:authorize>
+                <%--</sec:authorize>--%>
 
             </tbody>
         </table>
 
     </div>
+
+    <sec:authorize access="hasRole('HEAD_MASTER')">
 
     <div class="container">
 
@@ -136,6 +159,8 @@
         </div>
 
     </div>
+
+    </sec:authorize>
 
 </body>
 </html>
