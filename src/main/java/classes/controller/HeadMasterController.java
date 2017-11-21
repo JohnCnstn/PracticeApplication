@@ -2,6 +2,7 @@ package classes.controller;
 
 import classes.data.detail.CustomUserDetail;
 import classes.data.dto.PracticeDto;
+import classes.data.dto.UserDto;
 import classes.data.entity.User;
 import classes.data.service.PracticeService;
 import classes.data.service.UserService;
@@ -27,6 +28,7 @@ public class HeadMasterController {
     public String showUserPage(Model model) {
         model.addAttribute("user", getPrincipal());
         model.addAttribute("listOfStudents", userService.getAll());
+        model.addAttribute("student", new UserDto());
         model.addAttribute("practiceDto", new PracticeDto());
         return "students";
     }

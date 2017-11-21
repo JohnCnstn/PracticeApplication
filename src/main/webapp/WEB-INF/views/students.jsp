@@ -43,6 +43,7 @@
         <table class="tablesorter" id="keywords" cellspacing="0" cellpadding="0">
             <thead>
                 <tr>
+                    <th></th>
                     <th><span>First Name</span></th>
                     <th><span>Second Name</span></th>
                 </tr>
@@ -51,32 +52,32 @@
 
                 <c:forEach items="${listOfStudents}" var="i">
                     <tr>
+                        <td><form:checkbox path="student.id" value="${i.id}"/></td>
                         <td>${i.firstName}</td>
                         <td>${i.lastName}</td>
                         <td>
-
-                            <sec:authorize access="hasRole('ADMIN')">
-
-                                <spring:url value="/admin/userInfo/${i.id}" var="userProfileUrl" />
-
-                                <spring:url value="/admin/delete/${i.id}" var="deleteUserUrl" />
-
-                                    <button class="btn btn-danger"
-                                            onclick="location.href='${deleteUserUrl}'">Delete</button>
-                            </sec:authorize>
-
                             <sec:authorize access="hasRole('HEAD_MASTER')">
 
                                 <spring:url value="/head-master/userInfo/${i.id}" var="userProfileUrl" />
 
+                                <button class="btn btn-info"
+                                        onclick="location.href='${userProfileUrl}'">Info</button>
+
                             </sec:authorize>
-
-                            <button class="btn btn-info"
-                                    onclick="location.href='${userProfileUrl}'">Info</button>
-
                         </td>
                     </tr>
                 </c:forEach>
+
+                <sec:authorize access="hasRole('ADMIN')">
+
+                    <spring:url value="/admin/userInfo/${student.id}" var="userProfileUrl" />
+
+                    <spring:url value="/admin/delete/${student.id}" var="deleteUserUrl" />
+
+                    <button class="btn btn-danger"
+                            onclick="location.href='${deleteUserUrl}'">Delete</button>
+
+                </sec:authorize>
 
             </tbody>
         </table>
@@ -84,7 +85,7 @@
     </div>
 
     <div class="container">
-        
+
         <!-- Trigger the modal with a button -->
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
 

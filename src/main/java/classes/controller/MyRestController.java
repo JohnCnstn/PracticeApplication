@@ -13,6 +13,8 @@ public class MyRestController {
     public ResponseEntity<PracticeDto> postPractice(@RequestBody PracticeDto practiceDto) {
 //        practiceService.registerNewPractice(practiceDto);
 //        return new Response("Done", practiceDto);
+        System.out.println(practiceDto.getStartDate());
+        System.out.println(practiceDto.getEndDate());
         return new ResponseEntity<>(practiceDto, HttpStatus.OK);
     }
 }

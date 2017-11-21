@@ -14,6 +14,10 @@ import javax.validation.constraints.Size;
 @PasswordMatches
 public class UserDto {
 
+    @Getter
+    @Setter
+    private long id;
+
     @NotNull
     @Size(min = 3, max = 20, message = "Your first name should be from 3 to 20 symbols!")
     @Getter
