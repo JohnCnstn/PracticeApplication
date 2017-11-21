@@ -18,6 +18,13 @@
     <script type="text/javascript" src="<c:url value="/resources/js/jquery.tablesorter.min.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/postrequest.js"/>"></script>
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+    <script>
+        jQuery(document).ready(function($) {
+            $(".clickable-row").click(function() {
+                window.location = $(this).data("href");
+            });
+        });
+    </script>>
 
 </head>
 <body>
@@ -51,7 +58,7 @@
             <tbody>
 
                 <c:forEach items="${listOfStudents}" var="i">
-                    <tr>
+                    <tr class='clickable-row' data-href="/head-master/userInfo/${i.id}">
                         <%--<td><form:checkbox path="student.id" value="${i.id}"/></td>--%>
                         <td>${i.firstName}</td>
                         <td>${i.lastName}</td>
@@ -86,7 +93,7 @@
                                 <%--<i class="fa fa-calendar"></i>--%>
                             <%--</div>--%>
                             <%--<input type="date" class="form-control pull-right"--%>
-                                   <%--id="datepicker"/>--%>
+                                   <%--id="startDate"/>--%>
                         <%--</div>--%>
                     <%--</div>--%>
                 <%--</div>--%>
@@ -124,11 +131,12 @@
                     </div>
                     <div class="modal-body">
 
-                        <form:form name="form-Customer" commandName="practiceDto" action="sign-up" method="POST" id="customerForm">
+                        <form:form name="form-Custom    er" commandName="practiceDto" action="sign-up" method="POST" id="customerForm">
 
                             <div id = "create_practice">
 
                                 <div class="form-group">
+                                    <%--<form:input path="startDate" type="date" class="form-control pull-right" id="startDate"/>--%>
                                     <form:label path="startDate" for="startDate">Start date of practice:</form:label>
                                     <form:input path="startDate" type="text" name="startDate" class="form-control" id="startDate" required="required" placeholder="18:12:1997"/>
                                 </div>
