@@ -18,6 +18,14 @@
     <script type="text/javascript" src="<c:url value="/resources/js/jquery.tablesorter.min.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/postrequest.js"/>"></script>
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+
+    <script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
+    <script>
+        webshims.setOptions('waitReady', false);
+        webshims.setOptions('forms-ext', {types: 'date'});
+        webshims.polyfill('forms forms-ext');
+    </script>
+
     <script>
         jQuery(document).ready(function($) {
             $(".clickable-row").click(function() {
@@ -85,28 +93,6 @@
                     </tr>
                 </c:forEach>
 
-                <%--<div class="form-group has-feedback">--%>
-                    <%--<div class="form-group">--%>
-                        <%--<label>Estimation Date:</label>--%>
-                        <%--<div class="input-group date">--%>
-                            <%--<div class="input-group-addon">--%>
-                                <%--<i class="fa fa-calendar"></i>--%>
-                            <%--</div>--%>
-                            <%--<input type="date" class="form-control pull-right"--%>
-                                   <%--id="startDate"/>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-
-                <%--<sec:authorize access="hasRole('ADMIN')">--%>
-
-                    <%--<spring:url value="/admin/delete/${i.id}" var="deleteUserUrl" />--%>
-
-                    <%--<button class="btn btn-danger"--%>
-                            <%--onclick="location.href='${deleteUserUrl}'">Delete</button>--%>
-
-                <%--</sec:authorize>--%>
-
             </tbody>
         </table>
 
@@ -136,12 +122,38 @@
                             <div id = "create_practice">
 
                                 <div class="form-group">
-                                    <%--<form:input path="startDate" type="date" class="form-control pull-right" id="startDate"/>--%>
+
+                                    <div class="form-group has-feedback">
+                                        <div class="form-group">
+                                            <div class="input-group date">
+                                                <label for="datepicker1">Start date:</label>
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+                                                <input type="date" class="form-control pull-right" id="datepicker1"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <form:label path="startDate" for="startDate">Start date of practice:</form:label>
                                     <form:input path="startDate" type="text" name="startDate" class="form-control" id="startDate" required="required" placeholder="18:12:1997"/>
                                 </div>
 
                                 <div class="form-group">
+
+                                    <div class="form-group has-feedback">
+                                        <div class="form-group">
+                                            <div class="input-group date">
+                                                <label for="datepicker2">End date:</label>
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+                                                <input type="date" class="form-control pull-right"
+                                                       id="datepicker2"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <form:label path="endDate" for="endDate">End date of practice:</form:label>
                                     <form:input path="endDate" type="text" name="endDate" class="form-control" id="endDate" required="required"/>
                                 </div>
