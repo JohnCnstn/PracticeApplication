@@ -1,12 +1,17 @@
 package classes.controller;
 
+import classes.handler.CustomAuthenticationSuccessHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Collection;
 
 @Controller
 public class LoginController {
@@ -38,7 +43,7 @@ public class LoginController {
         if (logout != null) {
             model.addObject("logout", "Logged out successfully.");
         } else if (!(auth instanceof AnonymousAuthenticationToken)){
-            return new ModelAndView("redirect:admin");
+            return new ModelAndView("redirect:" + determineTargetUrl(auth));
         }
 
         model.setViewName("login");
@@ -63,4 +68,35 @@ public class LoginController {
         }
         return userName;
     }
+
+    private String determineTargetUrl(Authentication authentication) {
+        boolean isUser = false;
+        boolean isAdmin = false;
+        boolean isHeadMaster = false;
+        Collection<? extends GrantedAuthority> authorities
+                = authentication.getAuthorities();
+        for (GrantedAuthority grantedAuthority : authorities) {
+            if (grantedAuthority.getAuthority().equals("ROLE_USER")) {
+                isUser = true;
+                break;
+            } else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
+                isAdmin = true;
+                break;
+            } else if (grantedAuthority.getAuthority().equals("ROLE_HEAD_MASTER")) {
+                isHeadMaster = true;
+                break;
+            }
+        }
+
+        if (isUser) {
+            return "user";
+        } else if (isAdmin) {
+            return "admin";
+        } else if (isHeadMaster) {
+            return "head-master";
+        } else {
+            throw new IllegalStateException();
+        }
+    }
+
 }
