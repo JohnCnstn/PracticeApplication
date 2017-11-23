@@ -30,17 +30,17 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public User findOne(long id) {
+    public Student findOne(long id) {
         return studentRepository.findOne(id);
     }
 
-    public User getByName(String name) {
+    public Student getByName(String name) {
         return studentRepository.findByName(name);
     }
 
     @Override
-    public User getByUserName(String userName) {
-        return studentRepository.findByUserName(userName);
+    public Student getByUserName(String studentName) {
+        return studentRepository.findByUserName(studentName);
     }
 
     public void setStudentOnPractice(Student student, PracticeDto practiceDto) {
@@ -58,7 +58,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Transactional
-    public User registerNewUserAccount(UserDto accountDto, FacultyDto facultyDto) throws UserNameExistsException, EmailExistsException {
+    public Student registerNewUserAccount(UserDto accountDto, FacultyDto facultyDto) throws UserNameExistsException, EmailExistsException {
 
         if (userNameExists(accountDto.getUserName())) {
             throw new UserNameExistsException("There is an account with that Username: "  + accountDto.getUserName());
@@ -81,7 +81,7 @@ public class StudentServiceImpl implements StudentService {
 
         student.setFaculty(faculty);
 
-        student.setUserProfile(userProfileService.getByType("USER"));
+        student.setUserProfile(userProfileService.getByType("STUDENT"));
 
         return studentRepository.save(student);
     }

@@ -40,14 +40,14 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     }
 
     private String determineTargetUrl(Authentication authentication) {
-        boolean isUser = false;
+        boolean isStudent = false;
         boolean isAdmin = false;
         boolean isHeadMaster = false;
         Collection<? extends GrantedAuthority> authorities
                 = authentication.getAuthorities();
         for (GrantedAuthority grantedAuthority : authorities) {
-            if (grantedAuthority.getAuthority().equals("ROLE_USER")) {
-                isUser = true;
+            if (grantedAuthority.getAuthority().equals("ROLE_STUDENT")) {
+                isStudent = true;
                 break;
             } else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
                 isAdmin = true;
@@ -58,8 +58,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
             }
         }
 
-        if (isUser) {
-            return "user";
+        if (isStudent) {
+            return "student";
         } else if (isAdmin) {
             return "admin";
         } else if (isHeadMaster) {

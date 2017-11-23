@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class UserController {
+public class StudentController {
 
     @Autowired
-    private StudentService userService;
+    private StudentService studentService;
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String showUserPage(Model model) {
         model.addAttribute("user", getPrincipal());
-        model.addAttribute("listOfStudents", userService.getAll());
+        model.addAttribute("listOfStudents", studentService.getAll());
         return "students";
     }
 
