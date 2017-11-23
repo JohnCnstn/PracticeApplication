@@ -86,36 +86,6 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.save(student);
     }
 
-//    @Transactional
-//    @Override
-//    public User registerNewHeadMasterAccount(UserDto accountDto, CompanyDto companyDto) throws UserNameExistsException, EmailExistsException {
-//
-//        if (userNameExists(accountDto.getUserName())) {
-//            throw new UserNameExistsException("There is an account with that Username: "  + accountDto.getUserName());
-//        }
-//
-//        if (emailExist(accountDto.getEmail())) {
-//            throw new EmailExistsException("There is an account with that email address: "  + accountDto.getEmail());
-//        }
-//
-//        HeadMaster headMaster = new HeadMaster();
-//
-//        Company company = companyService.findOne(companyDto.getId());
-//
-//        headMaster.setFirstName(accountDto.getFirstName());
-//        headMaster.setLastName(accountDto.getLastName());
-//        headMaster.setEmail(accountDto.getEmail());
-//        headMaster.setUserName(accountDto.getUserName());
-//
-//        headMaster.setPassword(bCryptPasswordEncoder.encode(accountDto.getPassword()));
-//
-//        headMaster.setCompany(company);
-//
-//        headMaster.setUserProfile(userProfileService.getByType("HEAD_MASTER"));
-//
-//        return studentRepository.save(user);
-//    }
-
     public void delete(long id) {
         studentRepository.delete(id);
     }
