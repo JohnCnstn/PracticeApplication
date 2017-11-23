@@ -2,7 +2,7 @@ package classes.controller;
 
 import classes.data.dto.FacultyDto;
 import classes.data.dto.UserDto;
-import classes.data.service.UserService;
+import classes.data.service.StudentService;
 import classes.data.service.impl.FacultyServiceImpl;
 import classes.data.validation.exception.EmailExistsException;
 import classes.data.validation.exception.UserNameExistsException;
@@ -22,7 +22,7 @@ import javax.validation.Valid;
 public class SignUpController {
 
     @Autowired
-    private UserService service;
+    private StudentService service;
 
     @Autowired
     private FacultyServiceImpl facultyService;

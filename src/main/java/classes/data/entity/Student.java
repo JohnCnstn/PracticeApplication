@@ -2,21 +2,12 @@ package classes.data.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user")
-@Inheritance(strategy=InheritanceType.JOINED)
-public class User {
-    @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name= "increment", strategy= "increment")
-    @Getter
-    @Setter
-    @Column(name = "id", nullable = false)
-    private long id;
+@Table(name = "student")
+public class Student extends User {
 
     @Column(name = "userName")
     @Getter
@@ -48,4 +39,16 @@ public class User {
     @Getter
     @Setter
     private UserProfile userProfile;
+
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "faculty_id")
+    @Getter
+    @Setter
+    private Faculty faculty;
+
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "practice_id")
+    @Getter
+    @Setter
+    private Practice practice;
 }

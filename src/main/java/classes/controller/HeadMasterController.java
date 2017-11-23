@@ -2,10 +2,10 @@ package classes.controller;
 
 import classes.data.detail.CustomUserDetail;
 import classes.data.dto.PracticeDto;
-import classes.data.dto.UserDto;
+import classes.data.entity.Student;
 import classes.data.entity.User;
 import classes.data.service.PracticeService;
-import classes.data.service.UserService;
+import classes.data.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -13,13 +13,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Date;
-
 @Controller
 public class HeadMasterController {
 
     @Autowired
-    private UserService userService;
+    private StudentService userService;
 
     @Autowired
     private PracticeService practiceService;
@@ -88,11 +86,11 @@ public class HeadMasterController {
 //        practiceDto.setStartDate(date);
 //    }
 
-    private void setStudentOnPractice(User user, PracticeDto practiceDto) {
-        userService.setStudentOnPractice(user, practiceDto);
+    private void setStudentOnPractice(Student student, PracticeDto practiceDto) {
+        userService.setStudentOnPractice(student, practiceDto);
     }
 
-    private void registerNewPractice(PracticeDto practiceDto) {
-        practiceService.registerNewPractice(practiceDto);
-    }
+//    private void registerNewPractice(PracticeDto practiceDto) {
+//        practiceService.registerNewPractice(practiceDto);
+//    }
 }

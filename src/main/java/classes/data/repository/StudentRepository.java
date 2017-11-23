@@ -1,18 +1,19 @@
 package classes.data.repository;
 
+import classes.data.entity.Student;
 import classes.data.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-public interface StudentRepository extends JpaRepository<User, Long> {
+public interface StudentRepository extends JpaRepository<Student, Long> {
 
-    @Query("select u from User u where u.firstName = :firstName")
-    User findByName(String firstName);
+    @Query("select s from Student s where s.firstName = :firstName")
+    Student findByName(String firstName);
 
-    @Query("select u from User u where u.userName = :userName")
-    User findByUserName(@Param("userName")String userName);
+    @Query("select s from Student s where s.userName = :userName")
+    Student findByUserName(@Param("userName")String userName);
 
-    @Query("select u from User u where u.email = :email")
-    User findByEmail(@Param("email") String email);
+    @Query("select s from Student s where s.email = :email")
+    Student findByEmail(@Param("email") String email);
 }

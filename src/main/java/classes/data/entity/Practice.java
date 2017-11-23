@@ -32,13 +32,13 @@ public class Practice {
     private Date endDate;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "student_id")
     @Getter
     @Setter
-    private User user;
+    private Student student;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "headMaster_id")
+    @JoinColumn(name = "headMaster_id", nullable = false)
     @Getter
     @Setter
     private HeadMaster headMaster;

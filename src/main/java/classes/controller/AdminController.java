@@ -2,32 +2,25 @@ package classes.controller;
 
 import classes.data.detail.CustomUserDetail;
 import classes.data.dto.CompanyDto;
-import classes.data.dto.PracticeDto;
 import classes.data.dto.UserDto;
 import classes.data.entity.User;
 import classes.data.service.CompanyService;
-import classes.data.service.UserService;
-import classes.data.validation.exception.EmailExistsException;
-import classes.data.validation.exception.UserNameExistsException;
+import classes.data.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.Valid;
-import java.util.Date;
-
 @Controller
 public class AdminController {
 
     @Autowired
-    private UserService userService;
+    private StudentService userService;
 
     @Autowired
     private CompanyService companyService;
@@ -73,39 +66,39 @@ public class AdminController {
 
     }
 
-    @RequestMapping(value = "/admin/sign-up", method = RequestMethod.POST)
-    public ModelAndView registerHeadMaster(@ModelAttribute("company") CompanyDto companyDto,
-                                            @Valid @ModelAttribute("user") UserDto accountDto,
-                                            BindingResult result) {
-
-        ModelAndView model = new ModelAndView();
-
-        if (!result.hasErrors()) {
-            createHeadMasterAccount(accountDto, companyDto, result);
-        }
-
-        if (result.hasErrors()) {
-            model.addObject("list", companyService.getAll());
-            model.setViewName("sign-up");
-        } else {
-            model.setViewName("redirect:/admin");
-        }
-        model.addObject("user", accountDto);
-        return model;
-    }
+//    @RequestMapping(value = "/admin/sign-up", method = RequestMethod.POST)
+//    public ModelAndView registerHeadMaster(@ModelAttribute("company") CompanyDto companyDto,
+//                                            @Valid @ModelAttribute("user") UserDto accountDto,
+//                                            BindingResult result) {
+//
+//        ModelAndView model = new ModelAndView();
+//
+//        if (!result.hasErrors()) {
+//            createHeadMasterAccount(accountDto, companyDto, result);
+//        }
+//
+//        if (result.hasErrors()) {
+//            model.addObject("list", companyService.getAll());
+//            model.setViewName("sign-up");
+//        } else {
+//            model.setViewName("redirect:/admin");
+//        }
+//        model.addObject("user", accountDto);
+//        return model;
+//    }
 
     private User getPrincipal(){
         CustomUserDetail customUserDetail = (CustomUserDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return customUserDetail.getUser();
     }
 
-    private void createHeadMasterAccount(UserDto accountDto, CompanyDto companyDto, BindingResult result) {
-        try {
-            userService.registerNewHeadMasterAccount(accountDto, companyDto);
-        } catch (UserNameExistsException e) {
-            result.rejectValue("userName", "message", "Username already exists");
-        } catch (EmailExistsException e) {
-            result.rejectValue("email", "message", "Email already exists");
-        }
-    }
+//    private void createHeadMasterAccount(UserDto accountDto, CompanyDto companyDto, BindingResult result) {
+//        try {
+//            userService.registerNewHeadMasterAccount(accountDto, companyDto);
+//        } catch (UserNameExistsException e) {
+//            result.rejectValue("userName", "message", "Username already exists");
+//        } catch (EmailExistsException e) {
+//            result.rejectValue("email", "message", "Email already exists");
+//        }
+//    }
 }
