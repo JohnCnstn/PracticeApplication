@@ -19,13 +19,13 @@ public class MyRestController {
 
     @RequestMapping(value = "/postPractice", method = RequestMethod.POST)
     public ResponseEntity<PracticeDto> postPractice(@RequestBody PracticeDto practiceDto) {
-//        createPractice(practiceDto, getPrincipal());
+        createPractice(practiceDto, getPrincipal());
         return new ResponseEntity<>(practiceDto, HttpStatus.OK);
     }
 
-//    private void createPractice(PracticeDto practiceDto, User user) {
-//        practiceService.registerNewPractice(practiceDto);
-//    }
+    private void createPractice(PracticeDto practiceDto, User user) {
+        practiceService.registerNewPractice(practiceDto, user);
+    }
 
     private User getPrincipal(){
         CustomUserDetail customUserDetail = (CustomUserDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

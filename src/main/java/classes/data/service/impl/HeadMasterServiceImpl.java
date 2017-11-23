@@ -34,17 +34,12 @@ public class HeadMasterServiceImpl implements HeadMasterService {
 
     @Override
     public HeadMaster findOne(long id) {
-        return null;
-    }
-
-    @Override
-    public HeadMaster getByName(String name) {
-        return null;
+        return headMasterRepository.findOne(id);
     }
 
     @Override
     public HeadMaster getByUserName(String userName) {
-        return null;
+        return headMasterRepository.findByUserName(userName);
     }
 
     @Override
@@ -84,12 +79,12 @@ public class HeadMasterServiceImpl implements HeadMasterService {
 
     @Override
     public void delete(long id) {
-
+        headMasterRepository.delete(id);
     }
 
     @Override
     public List<HeadMaster> getAll() {
-        return null;
+        return headMasterRepository.findAll();
     }
 
     private boolean userNameExists(String userName) {

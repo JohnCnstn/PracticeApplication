@@ -12,7 +12,6 @@ import java.util.List;
 
 public interface HeadMasterService {
     HeadMaster findOne(long id);
-    HeadMaster getByName(String name);
     HeadMaster getByUserName(String userName);
     void setStudentOnPractice(Student student, PracticeDto practiceDto);
     HeadMaster registerNewHeadMasterAccount(UserDto accountDto, CompanyDto companyDto) throws UserNameExistsException, EmailExistsException;
