@@ -20,24 +20,26 @@ public class Practice {
     private long id;
 
     @Column(name = "startDate")
+    @Temporal(TemporalType.DATE)
     @Getter
     @Setter
-    private String startDate;
+    private Date startDate;
 
     @Column(name = "endDate")
+    @Temporal(TemporalType.DATE)
     @Getter
     @Setter
-    private String endDate;
+    private Date endDate;
 
-//    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-//    @JoinColumn(name = "user_id")
-//    @Getter
-//    @Setter
-//    private User user;
-//
-//    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-//    @JoinColumn(name = "headMaster_id")
-//    @Getter
-//    @Setter
-//    private HeadMaster headMaster;
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "user_id")
+    @Getter
+    @Setter
+    private User user;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "headMaster_id")
+    @Getter
+    @Setter
+    private HeadMaster headMaster;
 }

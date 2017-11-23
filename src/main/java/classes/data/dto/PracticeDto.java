@@ -11,11 +11,11 @@ public class PracticeDto {
 
     @Getter
     @Setter
-    private String startDate;
+    private Date startDate;
 
     @Getter
     @Setter
-    private String endDate;
+    private Date endDate;
 
 //    @Getter
 //    @Setter
