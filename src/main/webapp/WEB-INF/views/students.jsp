@@ -126,17 +126,15 @@
                                     <div class="form-group has-feedback">
                                         <div class="form-group">
                                             <div class="input-group date">
-                                                <label for="datepicker1">Start date:</label>
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
-                                                <input type="date" class="form-control pull-right" id="datepicker1"/>
+                                                <form:label path="startDate" for="startDate">Start date of practice:</form:label>
+                                                <form:input path="startDate" type="date" name="startDate" class="form-control" id="startDate" required="required" placeholder="18:12:1997"/>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <form:label path="startDate" for="startDate">Start date of practice:</form:label>
-                                    <form:input path="startDate" type="text" name="startDate" class="form-control" id="startDate" required="required" placeholder="18:12:1997"/>
                                 </div>
 
                                 <div class="form-group">
@@ -144,18 +142,15 @@
                                     <div class="form-group has-feedback">
                                         <div class="form-group">
                                             <div class="input-group date">
-                                                <label for="datepicker2">End date:</label>
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
-                                                <input type="date" class="form-control pull-right"
-                                                       id="datepicker2"/>
+                                                <form:label path="endDate" for="endDate">End date of practice:</form:label>
+                                                <form:input path="endDate" type="date" name="endDate" class="form-control" id="endDate" required="required"/>>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <form:label path="endDate" for="endDate">End date of practice:</form:label>
-                                    <form:input path="endDate" type="text" name="endDate" class="form-control" id="endDate" required="required"/>
                                 </div>
 
                                 <div class="sign-up button">
