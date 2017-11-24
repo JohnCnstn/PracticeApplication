@@ -4,7 +4,6 @@ import classes.data.detail.CustomUserDetail;
 import classes.data.dto.PracticeDto;
 import classes.data.entity.Student;
 import classes.data.entity.User;
-import classes.data.service.PracticeService;
 import classes.data.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,14 +12,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class HeadMasterController {
 
     @Autowired
     private StudentService userService;
-
-    @Autowired
-    private PracticeService practiceService;
 
     @RequestMapping(value = "/head-master", method = RequestMethod.GET)
     public String showUserPage(Model model) {
@@ -37,18 +36,6 @@ public class HeadMasterController {
 
         ModelAndView model = new ModelAndView("student-info");
         model.addObject("student", student);
-
-        return model;
-    }
-
-    @RequestMapping(value = "/head-master/registerPractice", method = RequestMethod.GET)
-    public ModelAndView showRegisterPractice() {
-
-        ModelAndView model = new ModelAndView("register-practice");
-
-//        model.setViewName("sign-up");
-//        model.addObject("practice", new PracticeDto());
-//        model.addObject("company", new CompanyDto());
 
         return model;
     }

@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 public class PracticeDto {
 
@@ -16,6 +17,10 @@ public class PracticeDto {
     @Getter
     @Setter
     private Date endDate;
+
+    @Getter
+    @Setter
+    private long id;
 
     @Getter
     @Setter

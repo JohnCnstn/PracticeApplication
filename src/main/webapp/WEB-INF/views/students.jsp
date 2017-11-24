@@ -16,7 +16,8 @@
     <script type="text/javascript" src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/jquery.tablesorter.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/jquery.tablesorter.min.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/postrequest.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/createPractice.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/getAllStudentsId.js"/>"></script>
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 
     <script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
@@ -52,13 +53,14 @@
         </div>
     </div>
 
+    <form:form name="form-Customer" commandName="practiceDto" action="sign-up" method="POST" id="customerForm">
 
     <div class="form-group" id="wrapper">
 
         <table class="tablesorter" id="keywords" cellspacing="0" cellpadding="0">
             <thead>
                 <tr>
-                    <%--<th></th>--%>
+                    <th></th>
                     <th><span>First Name</span></th>
                     <th><span>Second Name</span></th>
                 </tr>
@@ -66,9 +68,9 @@
             <tbody>
 
                 <c:forEach items="${listOfStudents}" var="i">
-                    <tr class='clickable-row' data-href="/head-master/userInfo/${i.id}">
-                        <%--<td><form:checkbox path="student.id" value="${i.id}"/></td>--%>
-                        <td>${i.firstName}</td>
+                    <tr>
+                        <td><form:checkbox id="studentsId" path="id" value="${i.id}"/></td>
+                        <td class='clickable-row' data-href="/head-master/userInfo/${i.id}">${i.firstName}</td>
                         <td>${i.lastName}</td>
                         <td>
                             <sec:authorize access="hasRole('HEAD_MASTER')">
@@ -103,7 +105,7 @@
     <div class="container">
 
         <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+        <button id="getAllStudentsId" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Create Practice</button>
 
         <!-- Modal -->
         <div class="modal fade" id="myModal" role="dialog">
@@ -116,8 +118,6 @@
                         <h4 class="modal-title">Create practice</h4>
                     </div>
                     <div class="modal-body">
-
-                        <form:form name="form-Custom    er" commandName="practiceDto" action="sign-up" method="POST" id="customerForm">
 
                             <div id = "create_practice">
 
@@ -159,8 +159,6 @@
 
                             </div>
 
-                        </form:form>
-
                     </div>
 
                     <div class="modal-footer">
@@ -173,9 +171,13 @@
             </div>
         </div>
 
+
+
     </div>
 
     </sec:authorize>
+
+    </form:form>
 
 </body>
 </html>
