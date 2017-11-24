@@ -63,8 +63,6 @@
         </div>
     </div>
 
-    <form:form name="form-Customer" commandName="practiceDto" action="sign-up" method="POST" id="customerForm">
-
     <div class="form-group" id="wrapper">
 
         <table class="tablesorter" id="keywords" cellspacing="0" cellpadding="0">
@@ -110,6 +108,8 @@
 
     </div>
 
+
+
         <sec:authorize access="hasRole('ADMIN')">
 
             <div id="test">
@@ -118,7 +118,60 @@
 
                 <div class="list-group">
 
-                    <a href="#" class="list-group-item">Item 1</a>
+                    <%--start--%>
+
+                    <div class="container">
+
+                        <!-- Trigger the modal with a button -->
+                        <button id="createUniversity" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#universityModal">Create University</button>
+
+                        <form:form name="form-Customer" commandName="universityDto" action="sign-up" method="POST" id="universityForm">
+                        <!-- Modal -->
+                        <div class="modal fade" id="universityModal" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Create University</h4>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <div id = "create_university">
+
+                                            <div class="form-group">
+
+                                                <div class="form-group has-feedback">
+                                                    <form:label path="name" for="name">Your University Name:</form:label>
+                                                    <form:input path="name" type="text" name="name" class="form-control" id="name" required="required" placeholder="BSUiR"/>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="sign-up button">
+                                                <input type="submit" value="Create" />
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                            <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
+                                        <%--<div class="col-sm-7" id="postResultDiv"></div>--%>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        </form:form>
+
+                    </div>
+
+                        <%--end--%>
+
                     <a href="#" class="list-group-item">Item 2</a>
                     <a href="#" class="list-group-item">Item 3</a>
                     <a href="#" class="list-group-item">Item 4</a>
@@ -130,6 +183,8 @@
         </sec:authorize>
 
     <sec:authorize access="hasRole('HEAD_MASTER')">
+
+        <form:form name="form-Customer" commandName="practiceDto" action="sign-up" method="POST" id="customerForm">
 
     <div class="container">
 
@@ -204,9 +259,9 @@
 
     </div>
 
-    </sec:authorize>
+        </form:form>
 
-    </form:form>
+    </sec:authorize>
 
 </body>
 </html>

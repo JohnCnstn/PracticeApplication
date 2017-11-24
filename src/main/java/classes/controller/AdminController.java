@@ -2,6 +2,8 @@ package classes.controller;
 
 import classes.data.detail.CustomUserDetail;
 import classes.data.dto.CompanyDto;
+import classes.data.dto.PracticeDto;
+import classes.data.dto.UniversityDto;
 import classes.data.dto.UserDto;
 import classes.data.entity.User;
 import classes.data.service.CompanyService;
@@ -39,6 +41,7 @@ public class AdminController {
     public String showUserPage(Model model) {
         model.addAttribute("user", getPrincipal());
         model.addAttribute("listOfStudents", studentService.getAll());
+        model.addAttribute("universityDto", new UniversityDto());
         return "students";
     }
 
