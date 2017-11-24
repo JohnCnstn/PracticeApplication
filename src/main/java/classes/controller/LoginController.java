@@ -1,7 +1,5 @@
 package classes.controller;
 
-import classes.handler.CustomAuthenticationSuccessHandler;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -70,14 +68,14 @@ public class LoginController {
     }
 
     private String determineTargetUrl(Authentication authentication) {
-        boolean isUser = false;
+        boolean isStudent = false;
         boolean isAdmin = false;
         boolean isHeadMaster = false;
         Collection<? extends GrantedAuthority> authorities
                 = authentication.getAuthorities();
         for (GrantedAuthority grantedAuthority : authorities) {
-            if (grantedAuthority.getAuthority().equals("ROLE_USER")) {
-                isUser = true;
+            if (grantedAuthority.getAuthority().equals("ROLE_STUDENT")) {
+                isStudent = true;
                 break;
             } else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
                 isAdmin = true;
@@ -88,8 +86,8 @@ public class LoginController {
             }
         }
 
-        if (isUser) {
-            return "user";
+        if (isStudent) {
+            return "student";
         } else if (isAdmin) {
             return "admin";
         } else if (isHeadMaster) {

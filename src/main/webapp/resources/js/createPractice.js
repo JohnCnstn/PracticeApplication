@@ -10,7 +10,7 @@ $( document ).ready(function() {
 
     function ajaxPost(){
 
-        var checked = $('#studentsId').is(':checked');
+        var checked = $('#studentId').is(':checked');
 
         // PREPARE FORM DATA
 
@@ -20,12 +20,13 @@ $( document ).ready(function() {
              formData = {
                  startDate : $("#startDate").val(),
                  endDate :  $("#endDate").val(),
-                 studentsId : $("#studentsId").val()
+                 studentId : $("#studentId").val()
             };
         } else {
             formData = {
                 startDate : $("#startDate").val(),
                 endDate :  $("#endDate").val(),
+                studentId : $("#studentId").val()
             };
         }
 
@@ -56,5 +57,6 @@ $( document ).ready(function() {
     function resetData(){
         $("#startDate").val("");
         $("#endDate").val("");
+        $("#studentId").val("");
     }
 });

@@ -12,12 +12,14 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/font-awesome.min.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/admin.css"/>">
+    <link rel="stylesheet" href="<c:url value="/resources/css/slideMenu/BootSlideMenu.css"/>">
 
     <script type="text/javascript" src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/jquery.tablesorter.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/jquery.tablesorter.min.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/createPractice.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/getAllStudentsId.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/slideMenu/BootSlideMenu.js"/>"></script>
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 
     <script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
@@ -34,6 +36,14 @@
             });
         });
     </script>>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#test').BootSideMenu({
+                side: "left"
+            });
+        });
+    </script>
 
 </head>
 <body>
@@ -69,7 +79,7 @@
 
                 <c:forEach items="${listOfStudents}" var="i">
                     <tr>
-                        <td><form:checkbox id="studentsId" path="id" value="${i.id}"/></td>
+                        <td><input type="checkbox" id="studentId" checked="" name="${i.id}"/></td>
                         <td class='clickable-row' data-href="/head-master/userInfo/${i.id}">${i.firstName}</td>
                         <td>${i.lastName}</td>
                         <td>
@@ -99,6 +109,25 @@
         </table>
 
     </div>
+
+        <sec:authorize access="hasRole('ADMIN')">
+
+            <div id="test">
+                <div class="user">
+                </div>
+
+                <div class="list-group">
+
+                    <a href="#" class="list-group-item">Item 1</a>
+                    <a href="#" class="list-group-item">Item 2</a>
+                    <a href="#" class="list-group-item">Item 3</a>
+                    <a href="#" class="list-group-item">Item 4</a>
+
+                </div>
+
+            </div>
+
+        </sec:authorize>
 
     <sec:authorize access="hasRole('HEAD_MASTER')">
 
