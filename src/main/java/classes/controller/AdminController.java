@@ -1,10 +1,7 @@
 package classes.controller;
 
 import classes.data.detail.CustomUserDetail;
-import classes.data.dto.CompanyDto;
-import classes.data.dto.PracticeDto;
-import classes.data.dto.UniversityDto;
-import classes.data.dto.UserDto;
+import classes.data.dto.*;
 import classes.data.entity.User;
 import classes.data.service.CompanyService;
 import classes.data.service.HeadMasterService;
@@ -42,6 +39,7 @@ public class AdminController {
         model.addAttribute("user", getPrincipal());
         model.addAttribute("listOfStudents", studentService.getAll());
         model.addAttribute("universityDto", new UniversityDto());
+        model.addAttribute("facultyDto", new FacultyDto());
         return "students";
     }
 
