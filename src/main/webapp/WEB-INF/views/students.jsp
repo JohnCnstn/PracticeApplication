@@ -35,7 +35,7 @@
                 window.location = $(this).data("href");
             });
         });
-    </script>>
+    </script>
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -77,7 +77,7 @@
 
                 <c:forEach items="${listOfStudents}" var="i">
                     <tr>
-                        <td><input type="checkbox" id="studentId" checked="" name="${i.id}"/></td>
+                        <td><input type="checkbox" id="studentId" name="${i.id}"/></td>
                         <td class='clickable-row' data-href="/head-master/userInfo/${i.id}">${i.firstName}</td>
                         <td>${i.lastName}</td>
                         <td>
@@ -172,7 +172,57 @@
                     <div class="container">
 
                         <!-- Trigger the modal with a button -->
-                        <button id="showAllRequests" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#showAllRequestsModal">Create University</button>
+                        <button id="createFaculty" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#facultyModal">Create Faculty</button>
+
+                        <form:form name="form-Customer" commandName="facultyDto" action="CreateFaculty" method="POST" id="facultyForm">
+                            <!-- Modal -->
+                            <div class="modal fade" id="facultyModal" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Create Faculty</h4>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <div id = "create_faculty">
+
+                                                <div class="form-group">
+
+                                                    <div class="form-group has-feedback">
+                                                        <form:label path="name" for="facultyName">Your Faculty Name:</form:label>
+                                                        <form:input path="name" type="text" name="facultyName" class="form-control" id="facultyName" required="required" placeholder="FKSiS"/>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="sign-up button">
+                                                    <input type="submit" value="CreateFaculty" />
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                                <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
+                                                <%--<div class="col-sm-7" id="postResultDiv"></div>--%>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form:form>
+
+                    </div>
+
+                    <div class="container">
+
+                        <!-- Trigger the modal with a button -->
+                        <button id="showAllRequests" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#showAllRequestsModal">Show all requests</button>
 
                             <!-- Modal -->
                             <div class="modal fade" id="showAllRequestsModal" role="dialog">
@@ -198,8 +248,6 @@
                             </div>
 
                     </div>
-
-                    <a href="#" class="list-group-item">Item 4</a>
 
                 </div>
 
@@ -255,7 +303,7 @@
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
                                                 <form:label path="endDate" for="endDate">End date of practice:</form:label>
-                                                <form:input path="endDate" type="date" name="endDate" class="form-control" id="endDate" required="required"/>>
+                                                <form:input path="endDate" type="date" name="endDate" class="form-control" id="endDate" required="required"/>
                                             </div>
                                         </div>
                                     </div>
