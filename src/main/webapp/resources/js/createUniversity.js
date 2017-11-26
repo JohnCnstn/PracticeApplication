@@ -1,7 +1,7 @@
 $( document ).ready(function() {
 
     // SUBMIT FORM
-    $("#customerForm").submit(function(event) {
+    $("#universityForm").submit(function(event) {
         // Prevent the form from submitting via the browser.
         event.preventDefault();
         ajaxPost();
@@ -10,37 +10,17 @@ $( document ).ready(function() {
 
     function ajaxPost(){
 
+        // PREPARE FORM DATA
+
         var formData;
 
-        formData = {
-            startDate : $("#startDate").val(),
-            endDate :  $("#endDate").val()
-        }
+        formData = {name : $("#name").val()}
 
-        // var checked = $('#studentId').is(':checked');
-        //
-        // // PREPARE FORM DATA
-        //
-        // var formData;
-        //
-        // if(checked) {
-        //      formData = {
-        //          startDate : $("#startDate").val(),
-        //          endDate :  $("#endDate").val(),
-        //          studentId : $("#studentId").val()
-        //     };
-        // } else {
-        //     formData = {
-        //         startDate : $("#startDate").val(),
-        //         endDate :  $("#endDate").val(),
-        //         studentId : $("#studentId").val()
-        //     };
-        // }
 
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: window.location + "/createPractice",
+            url: window.location + "/createUniversity",
             data: JSON.stringify(formData),
             dataType: 'json',
             success: function (result) {
@@ -62,8 +42,6 @@ $( document ).ready(function() {
     }
 
     function resetData(){
-        $("#startDate").val("");
-        $("#endDate").val("");
-        $("#studentId").val("");
+        $("#name").val("");
     }
 });

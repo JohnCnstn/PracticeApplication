@@ -18,7 +18,7 @@
     <script type="text/javascript" src="<c:url value="/resources/js/jquery.tablesorter.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/jquery.tablesorter.min.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/createPractice.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/getAllStudentsId.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/createUniversity.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/slideMenu/BootSlideMenu.js"/>"></script>
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 
@@ -109,22 +109,19 @@
     </div>
 
 
-
         <sec:authorize access="hasRole('ADMIN')">
 
             <div id="test">
 
-                <div class="user">
-                </div>
-
                 <div class="list-group">
 
-                    <div class="container">
+                    <form:form name="form-University" commandName="universityDto" method="POST" id="universityForm">
 
-                        <!-- Trigger the modal with a button -->
-                        <button id="createUniversity" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#universityModal">Create University</button>
+                        <div class="container">
 
-                        <form:form name="form-Customer" commandName="universityDto" action="CreateUniversity" method="POST" id="universityForm">
+                            <!-- Trigger the modal with a button -->
+                            <button id="createUniversityModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#universityModal">Create Practice</button>
+
                             <!-- Modal -->
                             <div class="modal fade" id="universityModal" role="dialog">
                                 <div class="modal-dialog">
@@ -133,7 +130,7 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">Create University</h4>
+                                            <h4 class="modal-title">Create practice</h4>
                                         </div>
                                         <div class="modal-body">
 
@@ -141,15 +138,13 @@
 
                                                 <div class="form-group">
 
-                                                    <div class="form-group has-feedback">
-                                                        <form:label path="name" for="universityName">Your University Name:</form:label>
-                                                        <form:input path="name" type="text" name="universityName" class="form-control" id="universityName" required="required" placeholder="BSUiR"/>
-                                                    </div>
+                                                    <form:label path="name" for="firstName">Your First Name:</form:label>
+                                                    <form:input path="name" type="text" name="firstName" class="form-control" id="firstName" required="required" placeholder="Pavel"/>
 
                                                 </div>
 
                                                 <div class="sign-up button">
-                                                    <input type="submit" value="CreateUniversity" />
+                                                    <input type="submit" value="Create practice" />
                                                 </div>
 
                                             </div>
@@ -158,66 +153,67 @@
 
                                         <div class="modal-footer">
                                                 <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
-                                            <%--<div class="col-sm-7" id="postResultDiv"></div>--%>
+                                            <div class="col-sm-7" id="postResultDiv"></div>
                                         </div>
 
                                     </div>
 
                                 </div>
                             </div>
-                        </form:form>
 
-                    </div>
+                        </div>
 
-                    <div class="container">
+                    </form:form>
 
-                        <!-- Trigger the modal with a button -->
-                        <button id="createFaculty" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#facultyModal">Create Faculty</button>
+                    <%--<div class="container">--%>
 
-                        <form:form name="form-Customer" commandName="facultyDto" action="CreateFaculty" method="POST" id="facultyForm">
-                            <!-- Modal -->
-                            <div class="modal fade" id="facultyModal" role="dialog">
-                                <div class="modal-dialog">
+                        <%--<!-- Trigger the modal with a button -->--%>
+                        <%--<button id="createFaculty" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#facultyModal">Create Faculty</button>--%>
 
-                                    <!-- Modal content-->
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">Create Faculty</h4>
-                                        </div>
-                                        <div class="modal-body">
+                        <%--<form:form name="form-Customer" commandName="facultyDto" action="CreateFaculty" method="POST" id="facultyForm">--%>
+                            <%--<!-- Modal -->--%>
+                            <%--<div class="modal fade" id="facultyModal" role="dialog">--%>
+                                <%--<div class="modal-dialog">--%>
 
-                                            <div id = "create_faculty">
+                                    <%--<!-- Modal content-->--%>
+                                    <%--<div class="modal-content">--%>
+                                        <%--<div class="modal-header">--%>
+                                            <%--<button type="button" class="close" data-dismiss="modal">&times;</button>--%>
+                                            <%--<h4 class="modal-title">Create Faculty</h4>--%>
+                                        <%--</div>--%>
+                                        <%--<div class="modal-body">--%>
 
-                                                <div class="form-group">
+                                            <%--<div id = "create_faculty">--%>
 
-                                                    <div class="form-group has-feedback">
-                                                        <form:label path="name" for="facultyName">Your Faculty Name:</form:label>
-                                                        <form:input path="name" type="text" name="facultyName" class="form-control" id="facultyName" required="required" placeholder="FKSiS"/>
-                                                    </div>
+                                                <%--<div class="form-group">--%>
 
-                                                </div>
+                                                    <%--<div class="form-group has-feedback">--%>
+                                                        <%--<form:label path="name" for="facultyName">Your Faculty Name:</form:label>--%>
+                                                        <%--<form:input path="name" type="text" name="facultyName" class="form-control" id="facultyName" required="required" placeholder="FKSiS"/>--%>
+                                                    <%--</div>--%>
 
-                                                <div class="sign-up button">
-                                                    <input type="submit" value="CreateFaculty" />
-                                                </div>
+                                                <%--</div>--%>
 
-                                            </div>
+                                                <%--<div class="sign-up button">--%>
+                                                    <%--<input type="submit" value="CreateFaculty" />--%>
+                                                <%--</div>--%>
 
-                                        </div>
+                                            <%--</div>--%>
 
-                                        <div class="modal-footer">
-                                                <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
-                                                <%--<div class="col-sm-7" id="postResultDiv"></div>--%>
-                                        </div>
+                                        <%--</div>--%>
 
-                                    </div>
+                                        <%--<div class="modal-footer">--%>
+                                                <%--&lt;%&ndash;<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>&ndash;%&gt;--%>
+                                                <%--&lt;%&ndash;<div class="col-sm-7" id="postResultDiv"></div>&ndash;%&gt;--%>
+                                        <%--</div>--%>
 
-                                </div>
-                            </div>
-                        </form:form>
+                                    <%--</div>--%>
 
-                    </div>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</form:form>--%>
+
+                    <%--</div>--%>
 
                     <div class="container">
 
@@ -257,7 +253,7 @@
 
     <sec:authorize access="hasRole('HEAD_MASTER')">
 
-        <form:form name="form-Customer" commandName="practiceDto" action="sign-up" method="POST" id="customerForm">
+        <form:form name="form-Customer" commandName="practiceDto" method="POST" id="customerForm">
 
     <div class="container">
 
@@ -311,7 +307,7 @@
                                 </div>
 
                                 <div class="sign-up button">
-                                    <input type="submit" value="Sign up" />
+                                    <input type="submit" value="Create practice" />
                                 </div>
 
                             </div>
@@ -327,8 +323,6 @@
 
             </div>
         </div>
-
-
 
     </div>
 

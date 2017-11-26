@@ -31,15 +31,12 @@ public class AdminController {
     @Autowired
     private HeadMasterService headMasterService;
 
-    @Autowired
-    private CompanyService companyService;
-
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String showUserPage(Model model) {
         model.addAttribute("user", getPrincipal());
         model.addAttribute("listOfStudents", studentService.getAll());
         model.addAttribute("universityDto", new UniversityDto());
-        model.addAttribute("facultyDto", new FacultyDto());
+//        model.addAttribute("facultyDto", new FacultyDto());
         return "students";
     }
 
@@ -54,62 +51,62 @@ public class AdminController {
         return model;
     }
 
-    @RequestMapping(value = "/admin/delete/{id}", method = RequestMethod.GET)
-    public ModelAndView deleteUser(@PathVariable("id") int id) {
+//    @RequestMapping(value = "/admin/delete/{id}", method = RequestMethod.GET)
+//    public ModelAndView deleteUser(@PathVariable("id") int id) {
+//
+//        studentService.delete(id);
+//
+//        return new ModelAndView("redirect:/admin");
+//
+//    }
 
-        studentService.delete(id);
+//    @RequestMapping(value = "/admin/sign-up", method = RequestMethod.GET)
+//    public ModelAndView showRegisterHeadMaster() {
+//
+//        ModelAndView model = new ModelAndView();
+//
+//        model.setViewName("sign-up");
+//        model.addObject("user", new UserDto());
+//        model.addObject("company", new CompanyDto());
+//        model.addObject("list", companyService.getAll());
+//
+//        return model;
+//
+//    }
 
-        return new ModelAndView("redirect:/admin");
-
-    }
-
-    @RequestMapping(value = "/admin/sign-up", method = RequestMethod.GET)
-    public ModelAndView showRegisterHeadMaster() {
-
-        ModelAndView model = new ModelAndView();
-
-        model.setViewName("sign-up");
-        model.addObject("user", new UserDto());
-        model.addObject("company", new CompanyDto());
-        model.addObject("list", companyService.getAll());
-
-        return model;
-
-    }
-
-    @RequestMapping(value = "/admin/sign-up", method = RequestMethod.POST)
-    public ModelAndView registerHeadMaster(@ModelAttribute("company") CompanyDto companyDto,
-                                            @Valid @ModelAttribute("user") UserDto accountDto,
-                                            BindingResult result) {
-
-        ModelAndView model = new ModelAndView();
-
-        if (!result.hasErrors()) {
-            createHeadMasterAccount(accountDto, companyDto, result);
-        }
-
-        if (result.hasErrors()) {
-            model.addObject("list", companyService.getAll());
-            model.setViewName("sign-up");
-        } else {
-            model.setViewName("redirect:/admin");
-        }
-        model.addObject("user", accountDto);
-        return model;
-    }
+//    @RequestMapping(value = "/admin/sign-up", method = RequestMethod.POST)
+//    public ModelAndView registerHeadMaster(@ModelAttribute("company") CompanyDto companyDto,
+//                                            @Valid @ModelAttribute("user") UserDto accountDto,
+//                                            BindingResult result) {
+//
+//        ModelAndView model = new ModelAndView();
+//
+//        if (!result.hasErrors()) {
+//            createHeadMasterAccount(accountDto, companyDto, result);
+//        }
+//
+//        if (result.hasErrors()) {
+//            model.addObject("list", companyService.getAll());
+//            model.setViewName("sign-up");
+//        } else {
+//            model.setViewName("redirect:/admin");
+//        }
+//        model.addObject("user", accountDto);
+//        return model;
+//    }
 
     private User getPrincipal(){
         CustomUserDetail customUserDetail = (CustomUserDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return customUserDetail.getUser();
     }
 
-    private void createHeadMasterAccount(UserDto accountDto, CompanyDto companyDto, BindingResult result) {
-        try {
-            headMasterService.registerNewHeadMasterAccount(accountDto, companyDto);
-        } catch (UserNameExistsException e) {
-            result.rejectValue("userName", "message", "Username already exists");
-        } catch (EmailExistsException e) {
-            result.rejectValue("email", "message", "Email already exists");
-        }
-    }
+//    private void createHeadMasterAccount(UserDto accountDto, CompanyDto companyDto, BindingResult result) {
+//        try {
+//            headMasterService.registerNewHeadMasterAccount(accountDto, companyDto);
+//        } catch (UserNameExistsException e) {
+//            result.rejectValue("userName", "message", "Username already exists");
+//        } catch (EmailExistsException e) {
+//            result.rejectValue("email", "message", "Email already exists");
+//        }
+//    }
 }
